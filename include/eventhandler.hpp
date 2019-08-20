@@ -27,5 +27,5 @@ public:
 	/**
 	 * Called when window is closed
 	 */
-	void event_quit(sf::RenderWindow* window) { window->close(); }
+	virtual void event_quit(sf::RenderWindow* window) { window->close(); }
 };
