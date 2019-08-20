@@ -15,18 +15,23 @@ public:
 	int run();
 
 	void add_handler(const std::string& name, EventHandler* handler) {
+		SPDLOG_INFO("Adding a new handler. Name: {}", name);
 		handlers.insert({name, handler});
 	}
 
 	void set_current_eventhandler(const std::string& name) {
+		SPDLOG_INFO("Changing current handler to {}", name);
 		EventHandler* handler = handlers.find(name)->second;
 		
 		if(handler) {
 			if(current_handler) current_handler->clear();
 			current_handler = handler;
 			current_handler->init();
+			if(current_handler == NULL) {
+				SPDLOG_INFO("aaa");
+			}
 		} else {
-			SPDLOG_INFO("handler is null!");
+			SPDLOG_INFO("Handler doesn't exist");
 		}
 	}
 private:

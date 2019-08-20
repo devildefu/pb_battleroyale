@@ -7,22 +7,22 @@ public:
 	/**
 	 * Called upon each logic update to the game.
 	 */
-	void update() { };
+	virtual void update(sf::RenderWindow* window) { };
 
 	/**
 	 * Called to do the drawing of your game.
 	 */
-	void draw() { };
+	virtual void draw(sf::RenderWindow* window) { };
 
 	/**
 	 * Called when current handler will be changed to another
 	 */
-	void clear() { };
+	virtual void clear() { };
 
 	/**
 	 * Called when current handler is changed
 	 */
-	void init() { };
+	virtual void init() { };
 
 	/**
 	 * Called when window is closed

@@ -48,10 +48,10 @@ void App::handle_events() {
 
 void App::update() {
 	if(current_handler)
-		current_handler->update();
+		current_handler->update(window);
 }
 
 void App::draw() {
 	if(current_handler)
-		current_handler->draw();
+		current_handler->draw(window);
 }
