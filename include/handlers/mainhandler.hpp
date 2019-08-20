@@ -8,6 +8,6 @@ class MainHandler : public EventHandler {
 public:
 	virtual void update(sf::RenderWindow* window) { }
 	virtual void draw(sf::RenderWindow* window);
-	virtual void init() { SPDLOG_INFO("aaa"); }
+	virtual void init() { }
 	virtual void clear() {}
 };
