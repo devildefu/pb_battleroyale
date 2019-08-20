@@ -31,7 +31,10 @@ void App::handle_events() {
 	if(window->pollEvent(e)) {
 		switch(e.type) {
 			case sf::Event::Closed:
-				current_handler->event_quit(window);
+				if(current_handler) 
+					current_handler->event_quit(window);
+				else
+					window->close();
 				break;
 
 			default:
