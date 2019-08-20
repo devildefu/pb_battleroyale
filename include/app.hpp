@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <spdlog/spdlog.h>
 
 #include <eventhandler.hpp>
 
@@ -25,7 +26,7 @@ public:
 			current_handler = handler;
 			current_handler->init();
 		} else {
-			// Error
+			SPDLOG_INFO("handler is null!");
 		}
 	}
 private:

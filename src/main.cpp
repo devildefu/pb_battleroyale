@@ -4,7 +4,7 @@
 /* 320x180 */
 
 int main(int argc, char* argv[]) {
-	App app;
 	spdlog::set_pattern("[%^%l%$] (%@) %v");
+	App app;
 	return app.run();
 }

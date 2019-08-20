@@ -2,10 +2,12 @@
 
 App::App() 
 	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) { 
-	
+	SPDLOG_INFO("Initializing game");
 }
 
 App::~App() {
+	SPDLOG_INFO("Cleaning");
+
 	for(auto handler : handlers) {
 		delete handler.second;
 	}
@@ -31,6 +33,7 @@ void App::handle_events() {
 	if(window->pollEvent(e)) {
 		switch(e.type) {
 			case sf::Event::Closed:
+				SPDLOG_INFO("Received window close event");
 				if(current_handler) 
 					current_handler->event_quit(window);
 				else
