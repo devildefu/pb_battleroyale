@@ -21,7 +21,9 @@ public:
 		EventHandler* handler = handlers.find(name)->second;
 		
 		if(handler) {
+			if(current_handler) current_handler->clear();
 			current_handler = handler;
+			current_handler->init();
 		} else {
 			// Error
 		}
