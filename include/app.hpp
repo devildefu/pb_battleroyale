@@ -39,7 +39,7 @@ private:
 	void update();
 	void draw();
 
-	sf::RenderWindow* window = NULL;
+	sf::RenderWindow* window = nullptr;
 	std::map<std::string, EventHandler*> handlers;
-	EventHandler* current_handler = NULL;
+	EventHandler* current_handler = nullptr;
 };
