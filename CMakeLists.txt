@@ -10,5 +10,6 @@ set(source ${CMAKE_SOURCE_DIR}/src)
 add_executable(pb_battleroyale 
 ${source}/main.cpp
 ${source}/app.cpp
-${source}/spdlog.cpp)
+${source}/spdlog.cpp
+${source}/handlers/mainhandler.cpp)
 target_link_libraries(pb_battleroyale sfml-graphics sfml-window sfml-system)
