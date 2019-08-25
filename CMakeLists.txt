@@ -14,5 +14,13 @@ file(GLOB files
 	${source}/map/*.cpp
 )
 
-add_executable(pb_battleroyale ${files})
+add_executable(pb_battleroyale
+	${source}/handlers/mainhandler.cpp
+	${source}/map/location.cpp
+	${source}/app.cpp
+	${source}/main.cpp
+	${source}/spdlog.cpp
+	${source}/texturemanager.cpp
+)
+
 target_link_libraries(pb_battleroyale pthread sfml-graphics sfml-window sfml-system)

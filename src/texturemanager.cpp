@@ -1,16 +1,16 @@
 #include <texturemanager.hpp>
 #include <invalidtexture.hpp>
 
-TextureManager::~TextureManager() {
+impl::TextureManager::~TextureManager() {
 	SPDLOG_INFO("Cleaning textures");
 	for (auto &&[key, val] : this->textures) {
 		delete val;
 	}
 }
 
-sf::Texture& TextureManager::get(std::string texture) {
+sf::Texture& impl::TextureManager::get(std::string texture) {
 	SPDLOG_INFO("Requested texture \"{}\"", texture);
-	if (this->textures.find(texture) == this->textures.end()) {
+	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 		if(!txt->loadFromFile(texture + ".png")) {
 			SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
