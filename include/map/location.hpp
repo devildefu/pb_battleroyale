@@ -23,12 +23,12 @@ public:
     Location();
 
     ~Location();
-    
+
     /**
      *  Sets the block type in the array
      */
     void set_obstacle(int x, int y, Obstacle* obstacle);
-    
+
     void place_obstacle(int x, int y, Obstacle* obstacle);
 
     /**
