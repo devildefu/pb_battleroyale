@@ -3,7 +3,7 @@
 #include <texturemanager.hpp>
 
 void MainHandler::init() {
-	TextureManager().get("AAAA");
+
 }
 
 void MainHandler::draw(sf::RenderWindow* window) {
