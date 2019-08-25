@@ -34,7 +34,7 @@ void App::handle_events() {
 		switch(e.type) {
 			case sf::Event::Closed:
 				SPDLOG_INFO("Received window close event");
-				if(current_handler) 
+				if(current_handler)
 					current_handler->event_quit(window);
 				else
 					window->close();

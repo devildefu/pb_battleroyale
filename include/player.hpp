@@ -29,6 +29,9 @@ public:
 	void set_jump_time(int n) { jump_time = n; }
 	bool get_jump_can() { return jump_can; }
 	void set_jump_can(bool n) { jump_can = n; }
+
+	virtual void update();
+	virtual void draw(sf::RenderWindow& window);
 private:
 	bool killed = false;
 	KilledType killed_type = NotKilled;

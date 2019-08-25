@@ -1,4 +1,5 @@
 #include <map/location.hpp>
+#include <cstring>
 
 Location::Location() {
     /* Fill everything with NULL */

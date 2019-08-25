@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Object {
 public:
@@ -19,7 +20,7 @@ public:
 		velocity.x += x;
 		velocity.y += y;
 	}
-	virtual void apply_velocity(float x, float y, float limitX, float limitY) = 0;
+	//virtual void apply_velocity(float x, float y, float limitX, float limitY) = 0;
 	virtual void apply_position(float x, float y) {
 		position.x += x;
 		position.y += y;
@@ -33,11 +34,18 @@ public:
 		position.y = y;
 	}
 
-	virtual void update() = 0;
-	virtual void draw(sf::RenderWindow& window) = 0;
+	virtual void update() {
+		for (auto&& child : this->childs)
+			child.update();
+	}
+	virtual void draw(sf::RenderWindow& window) {
+		for (auto&& child : this->childs)
+			child.draw(window);
+	}
 protected:
 	sf::Vector2f position;
 	sf::Vector2f velocity;
 	sf::Sprite sprite;
 	sf::Texture texture;
+	std::vector<Object> childs;
 };
