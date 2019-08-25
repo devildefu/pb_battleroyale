@@ -8,12 +8,6 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 set(source ${CMAKE_SOURCE_DIR}/src)
 
-file(GLOB files
-	${source}/*.cpp
-	${source}/handlers/*.cpp
-	${source}/map/*.cpp
-)
-
 add_executable(pb_battleroyale
 	${source}/handlers/mainhandler.cpp
 	${source}/map/location.cpp
