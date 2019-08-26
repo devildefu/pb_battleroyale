@@ -35,6 +35,8 @@ void Location::run(sf::RenderWindow* window) {
 
             if(obstacle) {
                 sf::Sprite sprite = obstacle->get_sprite();
+                // TODO: Change after we start using the surface.
+                sprite.setPosition(i*32, j*32);
                 if(window) window->draw(sprite);
             }
         }
