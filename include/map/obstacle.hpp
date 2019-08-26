@@ -32,6 +32,7 @@ public:
         //this->id = obstacle.get_id();
         this->texture = obstacle.get_texture();
         sprite.setTexture(this->texture);
+        sprite.scale(16.0f, 16.0f);
     }
 
     Obstacle(sf::Texture texture, bool collision = false, bool shadow = false) {
@@ -39,6 +40,7 @@ public:
         this->collision = collision;
         this->shadow = shadow;
         sprite.setTexture(this->texture);
+        sprite.scale(16.0f, 16.0f);
     }
 
     ~Obstacle() {
