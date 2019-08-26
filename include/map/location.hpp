@@ -14,8 +14,11 @@
 class Location {
 private:
     Obstacle* obstacles[MAP_WIDTH * MAP_HEIGHT];
+    sf::Texture background;
 public:
     Location();
+
+    Location(sf::Texture& background);
 
     ~Location();
 

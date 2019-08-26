@@ -3,6 +3,11 @@
 #include <texturemanager.hpp>
 
 Location::Location() {
+    memset(obstacles, NULL, sizeof(obstacles));
+}
+
+Location::Location(sf::Texture& background)
+    : background(background) {
     /* Fill everything with NULL */
     memset(obstacles, NULL, sizeof(obstacles));
 }
@@ -37,7 +42,11 @@ void Location::run(sf::RenderWindow* window) {
                 sf::Sprite sprite = obstacle->get_sprite();
                 // TODO: Change after we start using the surface.
                 sprite.setPosition(i*32, j*32);
-                if(window) window->draw(sprite);
+
+                if(window) {
+                    window->draw(sf::Sprite(background));
+                    window->draw(sprite); 
+                }
             }
         }
     }

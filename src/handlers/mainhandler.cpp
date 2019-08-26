@@ -4,7 +4,7 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
-	location = new Location;
+	location = new Location(TextureManager().get("background"));
 	Obstacle* ob = new Obstacle(TextureManager().get("test"), false, false);
 	location->set_obstacle(1, 0, ob);
 	map.add_location_to_array(0, 0, location);
