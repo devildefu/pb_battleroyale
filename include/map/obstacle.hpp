@@ -6,12 +6,14 @@
  */
 
 #include <SFML/Graphics.hpp>
+#include <spdlog/spdlog.h>
 
 class Obstacle {
 private:
-    int id = -1;
+    //int id = -1;
 
-    sf::Texture* texture = NULL;
+    sf::Texture texture;
+    sf::Sprite sprite;
 
     bool collision = false;
     bool shadow = false;
@@ -25,43 +27,36 @@ public:
      *  Create obstacle from other obstacle
      */
     Obstacle(Obstacle& obstacle) {
-        this->id = obstacle.get_id();
-        this->texture = obstacle.get_texture();
-    }
-
-    /**
-     *  Create obstacle from id, collision state and shadow state
-     */
-    Obstacle(int id, bool collision = false, bool shadow = false) {
-        this->id = id;
         this->collision = collision;
         this->shadow = shadow;
+        //this->id = obstacle.get_id();
+        this->texture = obstacle.get_texture();
+        sprite.setTexture(this->texture);
     }
 
-    /**
-     *  Create custom obstacle
-     */
-    Obstacle(sf::Texture* texture, bool collision = false, bool shadow = false) {
+    Obstacle(sf::Texture texture, bool collision = false, bool shadow = false) {
         this->texture = texture;
         this->collision = collision;
         this->shadow = shadow;
-        this->id = -1;
+        sprite.setTexture(this->texture);
     }
 
-    ~Obstacle() { 
-        if(texture)
-            delete texture;
+    ~Obstacle() {
+        //delete sprite;
     }
 
     /**
      *  Return obstacle's id
      */
-    inline int get_id() { return id; }
+    //inline int get_id() { return id; }
 
     /**
      *  Return obstacle's texture
      */
-    inline sf::Texture* get_texture() { return texture; }
+    inline sf::Sprite get_sprite() { return sprite; }
+
+    inline sf::Texture get_texture() { return texture; }
+    inline void set_texture(sf::Texture texture) { this->texture = texture; }
 
     /**
      *  Return obstacle's collision state

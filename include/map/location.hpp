@@ -5,20 +5,15 @@
 #include <iterator>
 #include <vector>
 
-#include <map/obstacle.hpp>
+#include "obstacle.hpp"
+#include <spdlog/spdlog.h>
 
 #define MAP_WIDTH  32
 #define MAP_HEIGHT 18
 
 class Location {
 private:
-    Obstacle* obstacles[MAP_WIDTH * MAP_HEIGHT - 1];
-    std::vector<Obstacle*> custom_obstacles;
-
-    bool render = false;
-
-    void set_collision(int x, int y, bool state);
-    void set_shadow(int x, int y, bool state);
+    Obstacle* obstacles[MAP_WIDTH * MAP_HEIGHT];
 public:
     Location();
 
@@ -29,16 +24,9 @@ public:
      */
     void set_obstacle(int x, int y, Obstacle* obstacle);
 
-    void place_obstacle(int x, int y, Obstacle* obstacle);
-
-    /**
-     *  Modify current location
-     */
-    void run();
+    void run(sf::RenderWindow* window);
 
     void update();
-
-    void set_render_state(bool state) { render = state; }
 };
 
 #endif
