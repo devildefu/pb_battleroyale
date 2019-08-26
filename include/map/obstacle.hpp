@@ -32,6 +32,9 @@ public:
         //this->id = obstacle.get_id();
         this->texture = obstacle.get_texture();
         sprite.setTexture(this->texture);
+        if(this->texture->getSize() != sf::Vector2u(16)) {
+            sprite.scale(sf::Vector2f(1.0f) / sf::Vector2f(this->texture->getSize() / sf::Vector2u(16)));
+        }
     }
 
     Obstacle(sf::Texture texture, bool collision = false, bool shadow = false) {
@@ -39,6 +42,9 @@ public:
         this->collision = collision;
         this->shadow = shadow;
         sprite.setTexture(this->texture);
+        if(this->texture->getSize() != sf::Vector2u(16)) {
+            sprite.scale(sf::Vector2f(1.0f) / sf::Vector2f(this->texture->getSize() / sf::Vector2u(16)));
+        }
     }
 
     ~Obstacle() {
