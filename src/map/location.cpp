@@ -14,7 +14,7 @@ Location::Location(sf::Texture& background, sf::Texture& tileset)
 }
 
 void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
-    sf::Vertex* quad = &vertices[(x * MAP_WIDTH + y) * 4];
+    sf::Vertex* quad = &vertices[(y * MAP_WIDTH + x) * 4];
     quad[0].position = sf::Vector2f(x * 10, y * 10);
     quad[1].position = sf::Vector2f((x+1) * 10, y * 10);
     quad[2].position = sf::Vector2f((x+1) * 10, (y+1) * 10);
