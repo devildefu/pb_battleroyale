@@ -10,10 +10,7 @@
 
 class Obstacle {
 private:
-    //int id = -1;
-
-    sf::Texture texture;
-    sf::Sprite sprite;
+    int id = 0;
 
     bool collision = false;
     bool shadow = false;
@@ -29,16 +26,14 @@ public:
     Obstacle(Obstacle& obstacle) {
         this->collision = collision;
         this->shadow = shadow;
-        //this->id = obstacle.get_id();
-        this->texture = obstacle.get_texture();
-        sprite.setTexture(this->texture);
+        this->id = obstacle.get_id();
     }
 
-    Obstacle(sf::Texture texture, bool collision = false, bool shadow = false) {
-        this->texture = texture;
+    Obstacle(int id, bool collision = false, bool shadow = false) {
+
         this->collision = collision;
         this->shadow = shadow;
-        sprite.setTexture(this->texture);
+        this->id = id;
     }
 
     ~Obstacle() {
@@ -48,15 +43,7 @@ public:
     /**
      *  Return obstacle's id
      */
-    //inline int get_id() { return id; }
-
-    /**
-     *  Return obstacle's texture
-     */
-    inline sf::Sprite get_sprite() { return sprite; }
-
-    inline sf::Texture get_texture() { return texture; }
-    inline void set_texture(sf::Texture texture) { this->texture = texture; }
+    inline int get_id() { return id; }
 
     /**
      *  Return obstacle's collision state

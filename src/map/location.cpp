@@ -3,55 +3,26 @@
 #include <texturemanager.hpp>
 
 Location::Location() {
-    memset(obstacles, NULL, sizeof(obstacles));
+    
 }
 
-Location::Location(sf::Texture& background)
-    : background(background) {
-    /* Fill everything with NULL */
-    memset(obstacles, NULL, sizeof(obstacles));
-}
-
-Location::~Location() {
-    /* Remove from memory and set to NULL */
-    for(Obstacle* obstacle : obstacles) {
-        if(obstacle) {
-            delete obstacle;
-        }
-    }
-
-    memset(obstacles, NULL, sizeof(obstacles));
+Location::Location(sf::Texture& background, sf::Texture& tileset)
+    : background(background),
+      tileset(tileset) {
+    vertices.setPrimitiveType(sf::Quads);
+    vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
 }
 
 void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
-    uint16_t pos = x * MAP_HEIGHT + y;
+    sf::Vertex* quad = &vertices[(x * MAP_WIDTH + y) * 4];
+    quad[0].position = sf::Vector2f(x * 10, y * 10);
+    quad[1].position = sf::Vector2f((x+1) * 10, y * 10);
+    quad[2].position = sf::Vector2f((x+1) * 10, (y+1) * 10);
+    quad[3].position = sf::Vector2f(x * 10, (y+1) * 10);
 
-    if(obstacle) {
-        obstacles[pos] = obstacle;
-    } else {
-        SPDLOG_ERROR("Obstacle is undefined!");
-    }
-}
-
-void Location::run(sf::RenderWindow* window) {
-    for(int i=0; i<MAP_WIDTH; i++) {
-        for(int j=0; j<MAP_HEIGHT; j++) {
-            Obstacle* obstacle = obstacles[i * MAP_HEIGHT + j];
-
-            if(obstacle) {
-                sf::Sprite sprite = obstacle->get_sprite();
-                // TODO: Change after we start using the surface.
-                sprite.setPosition(i*32, j*32);
-
-                if(window) {
-                    window->draw(sf::Sprite(background));
-                    window->draw(sprite); 
-                }
-            }
-        }
-    }
-}
-
-void Location::update() {
-
+    // TODO: Rework
+    quad[0].texCoords = sf::Vector2f(0, 0);
+    quad[1].texCoords = sf::Vector2f(32, 0);
+    quad[2].texCoords = sf::Vector2f(32, 32);
+    quad[3].texCoords = sf::Vector2f(0, 32);
 }

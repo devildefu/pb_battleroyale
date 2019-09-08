@@ -9,6 +9,6 @@ void MapManager::update_location(sf::RenderWindow* window) {
         // TODO: zmień z polskiego na angielski
         SPDLOG_ERROR("Nie ma w tablicy lokacji x: " + std::to_string(location_x) + " y: " + std::to_string(location_y) + "!");
     } else {
-        current_location->run(window);
+        window->draw(*current_location);
     }
 }
