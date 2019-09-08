@@ -1,7 +1,8 @@
 #include <app.hpp>
 
 App::App() 
-	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) { 
+	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) {
+	this->window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
 	SPDLOG_INFO("Initializing game");
 }
 
@@ -38,6 +39,35 @@ void App::handle_events() {
 					current_handler->event_quit(window);
 				else
 					window->close();
+				break;
+
+			case sf::Event::Resized:
+				{
+					sf::View window_view = window->getView();
+					float window_ratio = window->getSize().x / (float) window->getSize().y;
+					float view_ratio = window_view.getSize().x / (float) window_view.getSize().y;
+
+					float size_x = 1;
+					float size_y = 1;
+					float pos_x = 0;
+					float pos_y = 0;
+
+					bool horizontal_spacing = true;
+					if(window_ratio < view_ratio) {
+						horizontal_spacing = false;
+					}
+
+					if(horizontal_spacing) {
+						size_x = view_ratio / window_ratio;
+						pos_x = (1 - size_x) / 2.f;
+					} else {
+						size_y = window_ratio / view_ratio;
+						pos_y = (1 - size_y) / 2.f;
+					}
+
+					window_view.setViewport(sf::FloatRect(pos_x, pos_y, size_x, size_y));
+					window->setView(window_view);
+				}
 				break;
 
 			default:
