@@ -1,6 +1,6 @@
 #include <app.hpp>
 
-App::App() 
+App::App()
 	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) {
 	this->window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
 	SPDLOG_INFO("Initializing game");

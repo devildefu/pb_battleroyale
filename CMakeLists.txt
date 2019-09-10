@@ -15,6 +15,7 @@ add_executable(pb_battleroyale
 	${source}/main.cpp
 	${source}/spdlog.cpp
 	${source}/texturemanager.cpp
+	${source}/texturepacker.cpp
 	${source}/map/mapmanager.cpp
 )
 
