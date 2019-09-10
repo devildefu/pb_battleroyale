@@ -1,10 +1,10 @@
 # Perypetie Boba Battle Royale
 "Don't expect us to finish this project" ~no one, 2019
 
-## About <a name = "about"></a>
+## About
 Perypetie Boba but battle royale + open source, the game is written in C++ using SFML (because most of us know C++ well).
 
-## Getting Started <a name = "getting_started"></a>
+## Getting Started
 These instructions will show you how to install the necessary stuff and compile the project.
 
 ### Prerequisites
