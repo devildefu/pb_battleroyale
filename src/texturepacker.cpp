@@ -16,7 +16,7 @@ sf::IntRect TexturePacker::pack(sf::Texture& subimage) {
 	while(y <= target.getSize().y - subimage.getSize().y) {
 		while(x <= target.getSize().x - subimage.getSize().x) {
 			bool skip = false;
-			for(auto &area : occupied) {
+			for(auto& area : occupied) {
 				if(area.contains(x, y)) {
 					x = area.left + area.width;
 					skip = true;
