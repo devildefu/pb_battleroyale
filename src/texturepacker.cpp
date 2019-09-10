@@ -12,7 +12,7 @@ bool TexturePacker::is_free(sf::IntRect& area) {
 	return true;
 }
 
-sf::IntRect TexturePacker::pack(sf::Texture &subimage) {
+sf::IntRect TexturePacker::pack(sf::Texture& subimage) {
 	while(y <= target.getSize().y - subimage.getSize().y) {
 		while(x <= target.getSize().x - subimage.getSize().x) {
 			bool skip = false;
