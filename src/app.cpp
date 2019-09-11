@@ -1,9 +1,46 @@
 #include <app.hpp>
 
+/**
+ * INI Handler
+ */
+static int handler(void* user, const char* section, const char* name, const char* value) {
+	config* pconfig = (config*)user;
+
+	#define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
+	if(MATCH("options", "fps")) {
+		pconfig->fps = atoi(value);
+	} else if(MATCH("window", "width")) {
+		pconfig->window_width = atoi(value);
+	} else if(MATCH("window", "height")) {
+		pconfig->window_height = atoi(value);
+	} else {
+		return 0;
+	}
+	return 1;
+}
+
 App::App()
 	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) {
-	this->window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
+	window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
 	SPDLOG_INFO("Initializing game");
+
+	SPDLOG_INFO("Parsing config file");
+
+	config config;
+	if(ini_parse("config.ini", handler, &config) < 0) {
+		SPDLOG_WARN("Can't load config.ini");
+	} else {
+		SPDLOG_INFO("Config - fps: {}, window_width: {}, window_height: {}", config.fps, config.window_width, config.window_height);
+	}
+
+	if(config.fps > 0) {
+		window->setFramerateLimit(config.fps);
+	}
+	if(config.window_width > 0 && config.window_height > 0) {
+		window->setSize(sf::Vector2u(config.window_width, config.window_height));
+	}
+
+	SPDLOG_INFO("Parsing completed");
 }
 
 App::~App() {

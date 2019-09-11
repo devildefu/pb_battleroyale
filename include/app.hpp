@@ -4,8 +4,15 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
+#include <ini.h>
 
 #include <eventhandler.hpp>
+
+typedef struct {
+	uint8_t fps;
+	uint32_t window_width;
+	uint32_t window_height;
+} config;
 
 class App {
 public:
