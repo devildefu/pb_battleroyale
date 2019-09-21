@@ -36,8 +36,31 @@ App::App()
 	if(config.fps > 0) {
 		window->setFramerateLimit(config.fps);
 	}
+
 	if(config.window_width > 0 && config.window_height > 0) {
 		window->setSize(sf::Vector2u(config.window_width, config.window_height));
+	} else {
+		uint32_t width = sf::VideoMode::getDesktopMode().width;
+		uint32_t height = sf::VideoMode::getDesktopMode().height;
+
+		SPDLOG_INFO("DesktopMode: width: {}, height: {}", width, height);
+
+		// Let's find the smallest number
+		short ratio = std::min(width, height);
+
+		// Should we divide by 320 or 180?
+		if(ratio == width) { ratio /= 320; }
+		else if(ratio == height) { ratio /= 180; }
+
+		// ratio -= 1 will give too big a size (I think)
+		if(ratio - 2 > 0) 
+			ratio -= 2;
+		else
+			ratio = 1;
+
+		SPDLOG_INFO("{} {}", ratio * 320, ratio * 180);
+
+		window->setSize(sf::Vector2u(ratio * 320, ratio * 180));
 	}
 
 	SPDLOG_INFO("Parsing completed");
