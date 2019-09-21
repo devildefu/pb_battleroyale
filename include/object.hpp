@@ -5,8 +5,8 @@
 
 class Object {
 public:
-	Object() { }
-	~Object() { }
+	Object() {}
+	~Object() {}
 
 	virtual void set_x(float n) { position.x = n; }
 	virtual void set_y(float n) { position.y = n; }
@@ -35,13 +35,14 @@ public:
 	}
 
 	virtual void update() {
-		for (auto&& child : this->childs)
+		for(auto&& child : this->childs)
 			child.update();
 	}
 	virtual void draw(sf::RenderWindow& window) {
-		for (auto&& child : this->childs)
+		for(auto&& child : this->childs)
 			child.draw(window);
 	}
+
 protected:
 	sf::Vector2f position;
 	sf::Vector2f velocity;

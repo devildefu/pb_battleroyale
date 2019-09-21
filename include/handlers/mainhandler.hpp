@@ -4,10 +4,10 @@
 #include <spdlog/spdlog.h>
 
 #include <eventhandler.hpp>
-#include <vector>
-#include <object.hpp>
 #include <map/mapmanager.hpp>
+#include <object.hpp>
 #include <texturemanager.hpp>
+#include <vector>
 
 class MainHandler : public EventHandler {
 public:

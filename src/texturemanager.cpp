@@ -1,9 +1,9 @@
-#include <texturemanager.hpp>
 #include <invalidtexture.hpp>
+#include <texturemanager.hpp>
 
 impl::TextureManager::~TextureManager() {
 	SPDLOG_INFO("Cleaning textures");
-	for (auto &&[key, val] : this->textures) {
+	for(auto&& [key, val] : this->textures) {
 		delete val;
 	}
 }
