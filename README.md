@@ -4,6 +4,8 @@
 ## About
 Perypetie Boba but battle royale + open source, the game is written in C++ using SFML (because most of us know C++ well).
 
+[Link to the original game](https://pb.olekolek1000.pl)
+
 ## Getting Started
 These instructions will show you how to install the necessary stuff and compile the project.
 
@@ -18,3 +20,5 @@ Compilation is very easy. Just open the terminal and go to the project directory
 ### Built Using
 - [inih](https://github.com/benhoyt/inih) - .ini file parser
 - [spdlog](https://github.com/gabime/spdlog) - logging
+- [pbloader](https://github.com/CodersArmyTeam/pbloader) - my old project to add a modapi to PB. Part of the code 
+and the knowledge of how PB works comes from this project.
