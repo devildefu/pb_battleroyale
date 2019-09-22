@@ -5,7 +5,11 @@
 /* 320x180 */
 
 int main(int argc, char* argv[]) {
-	spdlog::set_pattern("[%^%l%$] (%@) %v");
+	#ifndef NDEBUG
+		spdlog::set_pattern("[%^%l%$] (%@) %v");
+	#else
+		spdlog::set_level(spdlog::level::off);
+	#endif
 	App app;
 	app.add_handler("main", new MainHandler);
 	app.set_current_eventhandler("main");
