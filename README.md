@@ -15,7 +15,7 @@ These instructions will show you how to install the necessary stuff and compile 
 - CMake
 
 ### Compiling
-Compilation is very easy. Just open the terminal and go to the project directory, enter `cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Debug` and then `cmake --build build`. CMake will do the rest. After completing the compilation, you should find `pb_battleroyale.exe` or `pb_battleroyale` in the build folder.
+Compilation is very easy. Just open the terminal and go to the project directory, enter `cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Debug` (debug mode) and then `cmake --build build`. CMake will do the rest. After completing the compilation, you should find `pb_battleroyale.exe` or `pb_battleroyale` in the build folder.
 
 ### Built Using
 - [inih](https://github.com/benhoyt/inih) - .ini file parser
