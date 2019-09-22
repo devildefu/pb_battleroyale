@@ -1,6 +1,6 @@
 #include <app.hpp>
-#include <spdlog/spdlog.h>
 #include <handlers/mainhandler.hpp>
+#include <spdlog/spdlog.h>
 
 /* 320x180 */
 

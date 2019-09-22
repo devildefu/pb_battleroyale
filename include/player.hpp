@@ -9,8 +9,7 @@ enum KilledType {
 	Killed
 };
 
-class Player : public Object
-{
+class Player : public Object {
 public:
 	Player();
 	~Player();
@@ -29,6 +28,7 @@ public:
 
 	virtual void update();
 	virtual void draw(sf::RenderWindow& window);
+
 private:
 	bool killed = false;
 	float hp = 0;

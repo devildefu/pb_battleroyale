@@ -1,7 +1,10 @@
 #include "texturepacker.hpp"
 
 TexturePacker::TexturePacker(sf::Texture& target_image)
-	: target(target_image), occupied(), x(0), y(0) {}
+	: target(target_image)
+	, occupied()
+	, x(0)
+	, y(0) {}
 
 bool TexturePacker::is_free(sf::IntRect& area) {
 	for(int i = occupied.size() - 1; i > 0; --i) {

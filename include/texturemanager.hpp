@@ -5,26 +5,27 @@
 #include <spdlog/spdlog.h>
 
 namespace impl {
-    class TextureManager {
-    private:
-        TextureManager() { SPDLOG_INFO("Initialized TextureManager"); }
-        ~TextureManager();
+class TextureManager {
+private:
+	TextureManager() { SPDLOG_INFO("Initialized TextureManager"); }
+	~TextureManager();
 
-        std::map<std::string, sf::Texture*> textures;
-    public:
-        TextureManager(const TextureManager&) = delete;
-        TextureManager(TextureManager &&) = delete;
-        TextureManager& operator=(TextureManager &&) = delete;
+	std::map<std::string, sf::Texture*> textures;
 
-        static TextureManager& instance() {
-            static TextureManager singleton;
-            return singleton;
-        }
+public:
+	TextureManager(const TextureManager&) = delete;
+	TextureManager(TextureManager&&) = delete;
+	TextureManager& operator=(TextureManager&&) = delete;
 
-        sf::Texture& get(std::string texture);
-    };
+	static TextureManager& instance() {
+		static TextureManager singleton;
+		return singleton;
+	}
+
+	sf::Texture& get(std::string texture);
+};
 };
 
 inline impl::TextureManager& TextureManager() {
-    return impl::TextureManager::instance();
+	return impl::TextureManager::instance();
 }

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <map>
-#include <string>
 #include <SFML/Graphics.hpp>
-#include <spdlog/spdlog.h>
 #include <ini.h>
+#include <map>
+#include <spdlog/spdlog.h>
+#include <string>
 
 #include <eventhandler.hpp>
 
@@ -23,13 +23,13 @@ public:
 
 	void add_handler(const std::string& name, EventHandler* handler) {
 		SPDLOG_INFO("Adding a new handler. Name: {}", name);
-		handlers.insert({name, handler});
+		handlers.insert({ name, handler });
 	}
 
 	void set_current_eventhandler(const std::string& name) {
 		SPDLOG_INFO("Changing current handler to {}", name);
 		EventHandler* handler = handlers.find(name)->second;
-		
+
 		if(handler) {
 			if(current_handler) current_handler->clear();
 			current_handler = handler;
@@ -41,6 +41,7 @@ public:
 			SPDLOG_INFO("Handler doesn't exist");
 		}
 	}
+
 private:
 	void handle_events();
 	void update();
