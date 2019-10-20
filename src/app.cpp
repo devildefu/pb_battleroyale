@@ -43,7 +43,7 @@ App::App()
 		uint32_t width = sf::VideoMode::getDesktopMode().width;
 		uint32_t height = sf::VideoMode::getDesktopMode().height;
 
-		SPDLOG_INFO("DesktopMode: width: {}, height: {}", width, height);
+		SPDLOG_INFO("DesktopMode: {}x{}", width, height);
 
 		// Let's find the smallest number
 		short ratio = std::min(width, height);
@@ -61,7 +61,7 @@ App::App()
 		else
 			ratio = 1;
 
-		SPDLOG_INFO("{} {}", ratio * 320, ratio * 180);
+		SPDLOG_INFO("The size of the window will be set to: {}x{}", ratio * 320, ratio * 180);
 
 		window->setSize(sf::Vector2u(ratio * 320, ratio * 180));
 	}
