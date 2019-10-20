@@ -6,12 +6,6 @@
 
 namespace impl {
 class TextureManager {
-private:
-	TextureManager() { SPDLOG_INFO("Initialized TextureManager"); }
-	~TextureManager();
-
-	std::map<std::string, sf::Texture*> textures;
-
 public:
 	TextureManager(const TextureManager&) = delete;
 	TextureManager(TextureManager&&) = delete;
@@ -23,6 +17,11 @@ public:
 	}
 
 	sf::Texture& get(std::string texture);
+private:
+	TextureManager() { SPDLOG_INFO("Initialized TextureManager"); }
+	~TextureManager();
+
+	std::map<std::string, sf::Texture*> textures;
 };
 };
 

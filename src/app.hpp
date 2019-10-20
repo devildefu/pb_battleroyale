@@ -7,6 +7,7 @@
 #include <string>
 
 #include <eventhandler.hpp>
+#include <managers/musicmanager.hpp>
 
 typedef struct {
 	uint8_t fps;

@@ -15,9 +15,10 @@ add_executable(pb_battleroyale
 	${source}/main.cpp
 	${source}/spdlog.cpp
 	${source}/ini.c
-	${source}/texturemanager.cpp
+	${source}/managers/texturemanager.cpp
 	${source}/texturepacker.cpp
+	${source}/managers/musicmanager.cpp
 	${source}/map/mapmanager.cpp
 )
 
-target_link_libraries(pb_battleroyale pthread sfml-graphics sfml-window sfml-system)
+target_link_libraries(pb_battleroyale pthread sfml-graphics sfml-window sfml-system sfml-audio)

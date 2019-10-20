@@ -6,7 +6,7 @@
 #include <eventhandler.hpp>
 #include <map/mapmanager.hpp>
 #include <object.hpp>
-#include <texturemanager.hpp>
+#include <managers/texturemanager.hpp>
 #include <vector>
 
 class MainHandler : public EventHandler {

@@ -67,6 +67,9 @@ App::App()
 	}
 
 	SPDLOG_INFO("Parsing completed");
+
+	MusicManager().load("despacito", "despacito.wav");
+	MusicManager().play("despacito");
 }
 
 App::~App() {

@@ -1,6 +1,6 @@
 #include <cstring>
 #include <map/location.hpp>
-#include <texturemanager.hpp>
+#include <managers/texturemanager.hpp>
 
 Location::Location() {
 }
