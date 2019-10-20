@@ -18,11 +18,19 @@ public:
 
 	void load(const std::string& name, const std::string& filename);
 	void play(const std::string& name);
+	bool exists(const std::string& name);
+	void clear();
+
+	void stop();
+	void pause();
+	void resume();
+	void set_volume(float volume);
 private:
 	MusicManager() { SPDLOG_INFO("Initialized MusicManager"); }
 	~MusicManager();
 
 	std::map<std::string, sf::Music*> musics;
+	sf::Music* current_music = nullptr;
 };
 };
 

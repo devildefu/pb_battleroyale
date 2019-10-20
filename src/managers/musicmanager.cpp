@@ -4,9 +4,8 @@ impl::MusicManager::~MusicManager() {
 	SPDLOG_INFO("Cleaning music");
 
 	// Clean up
-	for(auto&& [key, val] : this->musics) {
-		delete val;
-	}
+	clear();
+	current_music = nullptr;
 }
 
 void impl::MusicManager::load(const std::string& name, const std::string& filename) {
@@ -30,4 +29,34 @@ void impl::MusicManager::load(const std::string& name, const std::string& filena
 void impl::MusicManager::play(const std::string& name) {
 	sf::Music* music = this->musics[name];
 	music->play();
+	current_music = music;
+}
+
+bool impl::MusicManager::exists(const std::string& name) {
+	if(this->musics.find(name) == this->musics.end())
+		return false;
+	else
+		return true;
+}
+
+void impl::MusicManager::clear() {
+	for(auto&& [key, val] : this->musics) {
+		delete val;
+	}
+}
+
+void impl::MusicManager::stop() {
+	current_music->stop();
+}
+
+void impl::MusicManager::pause() {
+	current_music->pause();
+}
+
+void impl::MusicManager::resume() {
+	current_music->play();
+}
+
+void impl::MusicManager::set_volume(float volume) {
+	current_music->setVolume(volume);
 }
