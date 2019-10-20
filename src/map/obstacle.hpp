@@ -1,5 +1,4 @@
-#ifndef OBSTACLE_HPP
-#define OBSTACLE_HPP
+#pragma once
 
 /**
  * Note: code is from pbloader, so expect unnecessary things.
@@ -72,5 +71,3 @@ public:
 		return vec;
 	}
 };
-
-#endif

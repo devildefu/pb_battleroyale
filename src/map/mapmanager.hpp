@@ -1,5 +1,4 @@
-#ifndef MAPMANAGER_HPP
-#define MAPMANAGER_HPP
+#pragma once
 
 #include "location.hpp"
 #include <spdlog/spdlog.h>
@@ -57,5 +56,3 @@ public:
 
 	void update_location(sf::RenderWindow* window);
 };
-
-#endif

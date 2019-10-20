@@ -1,5 +1,4 @@
-#ifndef LOCATION_HPP
-#define LOCATION_HPP
+#pragma once
 
 #include <algorithm>
 #include <iterator>
@@ -32,5 +31,3 @@ private:
 		target.draw(vertices, states);
 	}
 };
-
-#endif
