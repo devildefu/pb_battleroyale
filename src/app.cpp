@@ -37,6 +37,15 @@ App::App()
 		window->setFramerateLimit(config.fps);
 	}
 
+	/**
+	 * !!! If the value is not printed or treated somehow, then it will return the limit, which will crash the entire application. 
+	 * !!! To prevent this, it will be written to the console.
+	 * !!! If we write this value again, the application will hang, but there will be no crash.
+	 * !!! Why did I make this hack fix? So that it wouldn't hang up anyone's computer or crash a session on Linux. 
+	 * !!! Probability that someone will compile and run this application is negligible, but it's worth protecting.
+	 */
+	SPDLOG_INFO("!!! HACK FIX !!! {}", config.window_width);
+
 	if(config.window_width > 0 && config.window_height > 0) {
 		window->setSize(sf::Vector2u(config.window_width, config.window_height));
 	} else {
@@ -70,6 +79,7 @@ App::App()
 
 	MusicManager().load("despacito", "despacito.wav");
 	MusicManager().play("despacito");
+	MusicManager().set_volume(50);
 }
 
 App::~App() {
