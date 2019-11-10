@@ -74,6 +74,12 @@ App::App()
 
 	int size = 0;
 
+	// Check if the directory exists
+	if(!std::filesystem::exists("assets/obstacles/")) {
+		SPDLOG_ERROR("\"assets/obstacles/\" not found!");
+		exit(1);
+	}
+
 	// Count how many blocks we have.
 	for (const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
 		size++;
