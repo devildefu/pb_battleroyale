@@ -4,7 +4,7 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
-	int doggos[7] = {1, 2, 0, 4, 3, 2, 1};
+	int doggos[7] = {1, 4, 0, 5, 10, 11, 15};
 	location = new Location(TextureManager().get("assets/backgrounds/19"), TextureManager().get_obstacles(), doggos, 7);
 	location->set_obstacle(1, 1, &ObstacleManager().get(0));
 	map.add_location_to_array(0, 0, location);

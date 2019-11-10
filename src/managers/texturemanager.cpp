@@ -5,8 +5,15 @@ impl::TextureManager::TextureManager() {
 	SPDLOG_INFO("Initialized TextureManager");
 	obstacle_packer = new TexturePacker(obstacles);
 
+	int i = 0;
+
+	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
+		i++;
+	}
+
 	// TODO: Resizing when needed
-	obstacles.create(1024, 1024);
+	SPDLOG_INFO("{}", i*10);
+	obstacles.create(i*10, 10);
 }
 
 impl::TextureManager::~TextureManager() {

@@ -72,15 +72,17 @@ App::App()
 
 	SPDLOG_INFO("Parsing completed");
 
-	// Loading obstacles
+	int size = 0;
+
+	// Count how many blocks we have.
 	for (const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
-		std::string path = entry.path().string();
-		std::string name = path.replace(path.find(".png"), 4, "");
+		size++;
+	}
 
-		TextureManager().load_obstacle(name);
-
-		int id = atoi(name.replace(path.find("assets/obstacles/"), 17, "").c_str());
-		ObstacleManager().add(Obstacle(id, false, false));
+	// Load to TextureManager and ObstacleManager
+	for(int i = 0; i < size; i++) {
+		TextureManager().load_obstacle("assets/obstacles/" + std::to_string(i));
+		ObstacleManager().add(Obstacle(i, false, false));
 	}
 
 	MusicManager().load("despacito", "despacito.wav");

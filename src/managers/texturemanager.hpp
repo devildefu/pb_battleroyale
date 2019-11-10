@@ -3,6 +3,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <map>
 #include <spdlog/spdlog.h>
+#include <filesystem>
 
 #include <texturepacker.hpp>
 
