@@ -19,6 +19,7 @@ add_executable(pb_battleroyale
 	${source}/texturepacker.cpp
 	${source}/managers/musicmanager.cpp
 	${source}/map/mapmanager.cpp
+	${source}/managers/obstaclemanager.cpp
 )
 
 target_link_libraries(pb_battleroyale pthread sfml-graphics sfml-window sfml-system sfml-audio)

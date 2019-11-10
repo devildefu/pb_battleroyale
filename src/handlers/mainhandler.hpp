@@ -7,6 +7,7 @@
 #include <map/mapmanager.hpp>
 #include <object.hpp>
 #include <managers/texturemanager.hpp>
+#include <managers/obstaclemanager.hpp>
 #include <vector>
 
 class MainHandler : public EventHandler {

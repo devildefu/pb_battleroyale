@@ -72,6 +72,17 @@ App::App()
 
 	SPDLOG_INFO("Parsing completed");
 
+	// Loading obstacles
+	for (const auto& entry : std::filesystem::directory_iterator("assets/obstacles")) {
+		std::string path = entry.path().string();
+		std::string name = path.replace(path.find(".png"), 4, "");
+
+		TextureManager().load_obstacle(name);
+
+		int id = atoi(name.replace(path.find("assets/obstacles\\"), 17, "").c_str());
+		ObstacleManager().add(Obstacle(id, false, false));
+	}
+
 	MusicManager().load("despacito", "despacito.wav");
 	MusicManager().play("despacito");
 	MusicManager().set_volume(1);
