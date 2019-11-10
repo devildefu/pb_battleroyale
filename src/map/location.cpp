@@ -14,6 +14,22 @@ Location::Location(sf::Texture& background, sf::Texture& tileset)
 	vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
 }
 
+Location::Location(sf::Texture& background, sf::Texture& tileset, int map[], int size)
+	: background(background)
+	, tileset(tileset) {
+	vertices.setPrimitiveType(sf::Quads);
+	vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
+
+	create_from_array(map, size);
+}
+
+void Location::create_from_array(int map[], int size) {	
+	for(int i = 0; i < size; i++) {
+		int id = map[i];
+		set_obstacle(i, 0, &ObstacleManager().get(id));
+	}
+}
+
 void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
 	sf::Vertex* quad = &vertices[(y * MAP_WIDTH + x) * 4];
 	// Calculation of the position
