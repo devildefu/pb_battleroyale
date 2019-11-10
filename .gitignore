@@ -3,3 +3,4 @@ build
 bin
 assets/*
 despacito.wav
+config.ini

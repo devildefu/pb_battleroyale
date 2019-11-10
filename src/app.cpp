@@ -74,7 +74,7 @@ App::App()
 
 	MusicManager().load("despacito", "despacito.wav");
 	MusicManager().play("despacito");
-	MusicManager().set_volume(50);
+	MusicManager().set_volume(1);
 }
 
 App::~App() {

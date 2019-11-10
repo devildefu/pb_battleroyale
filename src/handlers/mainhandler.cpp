@@ -4,9 +4,14 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
-	location = new Location(TextureManager().get("background"), TextureManager().get("test"));
+	TextureManager().load_obstacle("assets/1");
+	TextureManager().load_obstacle("assets/4");
+
+	location = new Location(TextureManager().get("background"), TextureManager().get_obstacles());
 	Obstacle* ob = new Obstacle(0, false, false);
-	location->set_obstacle(1, 0, ob);
+	Obstacle* ob2 = new Obstacle(1, false, false);
+	location->set_obstacle(0, 0, ob);
+	location->set_obstacle(1, 0, ob2);
 	map.add_location_to_array(0, 0, location);
 }
 

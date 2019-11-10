@@ -4,6 +4,8 @@
 #include <map>
 #include <spdlog/spdlog.h>
 
+#include <texturepacker.hpp>
+
 namespace impl {
 class TextureManager {
 public:
@@ -17,14 +19,19 @@ public:
 	}
 
 	sf::Texture& get(std::string texture);
+	sf::Texture& get_obstacles() { return obstacles; }
 	bool load(std::string texture);
+	bool load_obstacle(std::string texture);
 	/** Returns true if can delete or returns false if can't delete or texture isn't loaded */
 	bool remove(std::string texture);
 	void clear();
 	bool exists(std::string texture);
 private:
-	TextureManager() { SPDLOG_INFO("Initialized TextureManager"); }
+	TextureManager();
 	~TextureManager();
+
+	TexturePacker* obstacle_packer = nullptr;
+	sf::Texture obstacles;
 
 	std::map<std::string, sf::Texture*> textures;
 };
