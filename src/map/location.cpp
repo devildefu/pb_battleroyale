@@ -26,7 +26,7 @@ Location::Location(sf::Texture& background, sf::Texture& tileset, int map[], int
 void Location::create_from_array(int map[], int size) {	
 	for(int i = 0; i < size; i++) {
 		int id = map[i];
-		set_obstacle(i, 0, &ObstacleManager().get(id));
+		if(id > 0) set_obstacle(i, 0, &ObstacleManager().get(id-1));
 	}
 }
 
