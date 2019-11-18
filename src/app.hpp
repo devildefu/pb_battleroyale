@@ -10,6 +10,7 @@
 #include <managers/texturemanager.hpp>
 #include <managers/musicmanager.hpp>
 #include <managers/obstaclemanager.hpp>
+#include <helpers.hpp>
 
 typedef struct {
 	uint8_t fps;

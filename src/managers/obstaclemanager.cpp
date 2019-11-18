@@ -21,7 +21,7 @@ bool impl::ObstacleManager::add(Obstacle obstacle) {
 	SPDLOG_INFO("Adding obstacle, id: {}", id);
 
 	if(obstacles.find(id) == obstacles.end()) {
-		obstacles[id] = new Obstacle(obstacle);
+		obstacles.emplace(id, new Obstacle(obstacle));
 		return true;
 	}
 	return false;
@@ -29,7 +29,8 @@ bool impl::ObstacleManager::add(Obstacle obstacle) {
 
 Obstacle* impl::ObstacleManager::get(int id) {
 	if(obstacles.find(id) != obstacles.end()) {
-		return obstacles[id];
+		return obstacles.at(id);
 	}
+	SPDLOG_INFO("Obstacle id {} not found", id);
 	return nullptr;
 }

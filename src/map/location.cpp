@@ -31,6 +31,8 @@ void Location::create_from_array(uint16_t map[], int size) {
 }
 
 void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
+	if(obstacle == nullptr) return;
+
 	sf::Vertex* quad = &vertices[(y * MAP_WIDTH + x) * 4];
 	// Calculation of the position
 	quad[0].position = sf::Vector2f(x * SCALE, y * SCALE);
