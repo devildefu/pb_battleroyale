@@ -22,13 +22,14 @@ bool impl::ObstacleManager::add(Obstacle obstacle) {
 
 	if(obstacles.find(id) == obstacles.end()) {
 		obstacles[id] = new Obstacle(obstacle);
-	} else {
 		return true;
 	}
+	return false;
 }
 
-Obstacle& impl::ObstacleManager::get(int id) {
+Obstacle* impl::ObstacleManager::get(int id) {
 	if(obstacles.find(id) != obstacles.end()) {
-		return *obstacles[id];
+		return obstacles[id];
 	}
+	return nullptr;
 }

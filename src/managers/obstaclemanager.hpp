@@ -20,7 +20,7 @@ public:
 
 	void clear();
 	bool add(Obstacle obstacle);
-	Obstacle& get(int id);
+	Obstacle* get(int id);
 private:
 	ObstacleManager();
 	~ObstacleManager();
