@@ -16,10 +16,10 @@ class Location : public sf::Drawable, public sf::Transformable {
 public:
 	Location();
 	Location(sf::Texture& background, sf::Texture& tileset);
-	Location(sf::Texture& background, sf::Texture& tileset, int map[], int size = 576);
+	Location(sf::Texture& background, sf::Texture& tileset, uint16_t map[], int size = 576);
 
 	void set_obstacle(int x, int y, Obstacle* obstacle);
-	void create_from_array(int map[], int size = 576);
+	void create_from_array(uint16_t map[], int size = 576);
 private:
 	sf::Texture background;
 

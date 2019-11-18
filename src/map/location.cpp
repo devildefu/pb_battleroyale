@@ -14,7 +14,7 @@ Location::Location(sf::Texture& background, sf::Texture& tileset)
 	vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
 }
 
-Location::Location(sf::Texture& background, sf::Texture& tileset, int map[], int size)
+Location::Location(sf::Texture& background, sf::Texture& tileset, uint16_t map[], int size)
 	: background(background)
 	, tileset(tileset) {
 	vertices.setPrimitiveType(sf::Quads);
@@ -23,7 +23,7 @@ Location::Location(sf::Texture& background, sf::Texture& tileset, int map[], int
 	create_from_array(map, size);
 }
 
-void Location::create_from_array(int map[], int size) {	
+void Location::create_from_array(uint16_t map[], int size) {	
 	for(int i = 0; i < size; i++) {
 		int id = map[i];
 		if(id > 0) set_obstacle(i, 0, &ObstacleManager().get(id-1));
