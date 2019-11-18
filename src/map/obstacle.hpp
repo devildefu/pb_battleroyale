@@ -29,7 +29,7 @@ public:
 		this->id = obstacle.get_id();
 	}
 
-	Obstacle(int id, bool collision = false, bool shadow = false) {
+	Obstacle(uint16_t id, bool collision = false, bool shadow = false) {
 
 		this->collision = collision;
 		this->shadow = shadow;
@@ -43,7 +43,7 @@ public:
 	/**
      *  Return obstacle's id
      */
-	inline int get_id() { return id; }
+	inline uint16_t get_id() { return id; }
 
 	/**
      *  Return obstacle's collision state
