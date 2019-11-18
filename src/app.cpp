@@ -72,21 +72,16 @@ App::App()
 
 	SPDLOG_INFO("Parsing completed");
 
-	int size = 0;
-
 	// Check if the directory exists
 	if(!std::filesystem::exists("assets/obstacles/")) {
 		SPDLOG_ERROR("\"assets/obstacles/\" not found!");
 		exit(1);
 	}
 
-	// Count how many blocks we have.
-	for (const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
-		size++;
-	}
-
-	// Load to TextureManager and ObstacleManager
-	for(int i = 0; i < size; i++) {
+	// Load all blocks to TextureManager and ObstacleManager
+	int i = 0;
+	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
+		i++;
 		TextureManager().load_obstacle("assets/obstacles/" + std::to_string(i));
 		ObstacleManager().add(Obstacle(i, false, false));
 	}
