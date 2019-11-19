@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
+#include <cstdio>
 
 #include "obstacle.hpp"
 #include <spdlog/spdlog.h>
@@ -17,9 +18,12 @@ public:
 	Location();
 	Location(sf::Texture& background, sf::Texture& tileset);
 	Location(sf::Texture& background, sf::Texture& tileset, uint16_t map[], int size = 576);
+	Location(sf::Texture& background, sf::Texture& tileset, const char* fname);
 
 	void set_obstacle(int x, int y, Obstacle* obstacle);
 	void create_from_array(uint16_t map[], int size = 576);
+	void save(const char* fname, uint16_t* map, int size = 576);
+	void load(const char* fname);
 private:
 	sf::Texture background;
 

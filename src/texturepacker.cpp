@@ -43,4 +43,5 @@ sf::IntRect TexturePacker::pack(sf::Texture& subimage) {
 		x = 0;
 		y = 0;
 	}
+	return sf::IntRect();
 }

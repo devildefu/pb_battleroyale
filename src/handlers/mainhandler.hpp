@@ -2,13 +2,14 @@
 
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
+#include <vector>
 
 #include <eventhandler.hpp>
 #include <map/mapmanager.hpp>
 #include <object.hpp>
 #include <managers/texturemanager.hpp>
 #include <managers/obstaclemanager.hpp>
-#include <vector>
+#include <helpers.hpp>
 
 class MainHandler : public EventHandler {
 public:
