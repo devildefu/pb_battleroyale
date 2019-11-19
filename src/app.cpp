@@ -73,7 +73,7 @@ App::App()
 	SPDLOG_INFO("Parsing completed");
 
 	// Check if the directory exists
-	if(!Helpers::FileExists("assets/obstacles/")) {
+	if(!Helpers::file_exists("assets/obstacles/")) {
 		SPDLOG_ERROR("\"assets/obstacles/\" not found!");
 		exit(1);
 	}

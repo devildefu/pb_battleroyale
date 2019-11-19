@@ -4,5 +4,5 @@
 #include <unistd.h>
 
 namespace Helpers {
-	bool FileExists(const char* fname);
+	bool file_exists(const char* fname);
 }

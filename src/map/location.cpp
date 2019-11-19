@@ -80,8 +80,5 @@ void Location::load(const char* fname) {
 	fread(map, sizeof(uint16_t), size, f);
 	fclose(f);
 
-	for(int i = 0; i < size; i++) {
-		int id = map[i];
-		if(id > 0) set_obstacle(i, 0, ObstacleManager().get(id-1));
-	}
+	create_from_array(map, size);
 }

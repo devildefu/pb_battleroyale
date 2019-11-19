@@ -1,6 +1,6 @@
 #include <helpers.hpp>
 
-bool Helpers::FileExists(const char* fname) {
+bool Helpers::file_exists(const char* fname) {
 	struct stat buffer;
 	return (stat(fname, &buffer) == 0);
 }

@@ -4,7 +4,7 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
-	if(!Helpers::FileExists("map.bin")) {
+	if(!Helpers::file_exists("map.bin")) {
 		SPDLOG_INFO("Map file not found, creating...");
 		uint16_t map[7] = {1, 4, 0, 5, 10, 11, 15};
 		location->save("map.bin", map, 7);
