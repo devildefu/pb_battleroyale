@@ -1,18 +1,18 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <framework/window.hpp>
 
 class EventHandler {
 public:
 	/**
 	 * Called upon each logic update to the game.
 	 */
-	virtual void update(sf::RenderWindow* window) {};
+	virtual void update(Window* window) {};
 
 	/**
 	 * Called to do the drawing of your game.
 	 */
-	virtual void draw(sf::RenderWindow* window) {};
+	virtual void draw(Window* window) {};
 
 	/**
 	 * Called when current handler will be changed to another
@@ -27,5 +27,5 @@ public:
 	/**
 	 * Called when window is closed
 	 */
-	virtual void event_quit(sf::RenderWindow* window) { window->close(); }
+	virtual void event_quit(Window* window) { window->close(); }
 };

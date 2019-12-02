@@ -20,8 +20,8 @@ static int handler(void* user, const char* section, const char* name, const char
 }
 
 App::App()
-	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) {
-	window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
+	: window(new Window(1280, 720, "Perypetie Boba Battle Royale")) {
+	//window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
 	SPDLOG_INFO("Initializing game");
 
 	SPDLOG_INFO("Parsing config file");
@@ -38,12 +38,13 @@ App::App()
 	}
 
 	if(config.fps > 0) {
-		window->setFramerateLimit(config.fps);
+		window->set_framerate_limit(config.fps);
 	}
 
 	if(config.window_width > 0 && config.window_height > 0) {
-		window->setSize(sf::Vector2u(config.window_width, config.window_height));
+		//window->setSize(sf::Vector2u(config.window_width, config.window_height));
 	} else {
+		/*
 		uint32_t width = sf::VideoMode::getDesktopMode().width;
 		uint32_t height = sf::VideoMode::getDesktopMode().height;
 
@@ -68,6 +69,7 @@ App::App()
 		SPDLOG_INFO("The size of the window will be set to: {}x{}", ratio * 320, ratio * 180);
 
 		window->setSize(sf::Vector2u(ratio * 320, ratio * 180));
+		*/
 	}
 
 	SPDLOG_INFO("Parsing completed");
@@ -105,7 +107,7 @@ App::~App() {
 }
 
 int App::run() {
-	while(window->isOpen()) {
+	while(window->is_open()) {
 		handle_events();
 
 		update();
@@ -116,10 +118,11 @@ int App::run() {
 }
 
 void App::handle_events() {
-	sf::Event e;
-	if(window->pollEvent(e)) {
+	// TODO: Rework event system
+	SDL_Event e;
+	if(SDL_PollEvent(&e)) {
 		switch(e.type) {
-		case sf::Event::Closed:
+		case SDL_QUIT:
 			SPDLOG_INFO("Received window close event");
 			if(current_handler)
 				current_handler->event_quit(window);
@@ -127,6 +130,7 @@ void App::handle_events() {
 				window->close();
 			break;
 
+		/*
 		case sf::Event::Resized: {
 			sf::View window_view = window->getView();
 			float window_ratio = window->getSize().x / (float)window->getSize().y;
@@ -153,6 +157,7 @@ void App::handle_events() {
 			window_view.setViewport(sf::FloatRect(pos_x, pos_y, size_x, size_y));
 			window->setView(window_view);
 		} break;
+		*/
 
 		default:
 			break;

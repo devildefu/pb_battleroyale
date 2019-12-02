@@ -1,10 +1,11 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <ini.h>
 #include <map>
 #include <spdlog/spdlog.h>
 #include <string>
+
+#include <framework/window.hpp>
 
 #include <eventhandler.hpp>
 #include <managers/texturemanager.hpp>
@@ -51,7 +52,8 @@ private:
 	void update();
 	void draw();
 
-	sf::RenderWindow* window = nullptr;
+	Window* window = nullptr;
+
 	std::map<std::string, EventHandler*> handlers;
 	EventHandler* current_handler = nullptr;
 };

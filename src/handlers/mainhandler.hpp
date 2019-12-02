@@ -1,8 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 #include <vector>
+
+#include <framework/window.hpp>
 
 #include <eventhandler.hpp>
 #include <map/mapmanager.hpp>
@@ -13,8 +14,8 @@
 
 class MainHandler : public EventHandler {
 public:
-	virtual void update(sf::RenderWindow* window);
-	virtual void draw(sf::RenderWindow* window);
+	virtual void update(Window* window);
+	virtual void draw(Window* window);
 	virtual void init();
 	virtual void clear();
 

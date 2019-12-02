@@ -6,13 +6,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -DSPDLOG_COMPILED_LIB")
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
+set(framework sdl2)
+
 set(source ${CMAKE_SOURCE_DIR}/src)
 
 add_executable(pb_battleroyale
+	${source}/main.cpp
+
+	${source}/framework/${framework}/window.cpp
+
 	${source}/handlers/mainhandler.cpp
 	${source}/map/location.cpp
 	${source}/app.cpp
-	${source}/main.cpp
 	${source}/helpers.cpp
 	${source}/spdlog.cpp
 	${source}/ini.c
@@ -23,4 +28,4 @@ add_executable(pb_battleroyale
 	${source}/managers/obstaclemanager.cpp
 )
 
-target_link_libraries(pb_battleroyale pthread sfml-graphics sfml-window sfml-system sfml-audio)
+target_link_libraries(pb_battleroyale pthread sfml-graphics sfml-window sfml-system sfml-audio mingw32 SDL2main SDL2)
