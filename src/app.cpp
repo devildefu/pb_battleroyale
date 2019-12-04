@@ -9,6 +9,8 @@ static int handler(void* user, const char* section, const char* name, const char
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
 	if(MATCH("options", "fps")) {
 		pconfig->fps = atoi(value);
+	} else if(MATCH("options", "music")) {
+		pconfig->music = (strcmp(value, "true") == -1 ? false : true);
 	} else if(MATCH("window", "width")) {
 		pconfig->window_width = atoi(value);
 	} else if(MATCH("window", "height")) {
@@ -30,6 +32,7 @@ App::App()
 	config.fps = 0;
 	config.window_width = 0;
 	config.window_height = 0;
+	config.music = false;
 
 	if(ini_parse("config.ini", handler, &config) < 0) {
 		SPDLOG_WARN("Can't load config.ini");
@@ -87,9 +90,13 @@ App::App()
 		ObstacleManager().add(Obstacle(i, false, false));
 	}
 
-	MusicManager().load("despacito", "despacito.wav");
-	MusicManager().play("despacito");
-	MusicManager().set_volume(1);
+	if(config.music) {
+		MusicManager().load("despacito", "despacito.wav");
+		MusicManager().play("despacito");
+		MusicManager().set_volume(1);
+	} else {
+		SPDLOG_INFO("Music disabled");
+	}
 }
 
 App::~App() {

@@ -3,3 +3,4 @@ bin/pb_battleroyale*
 .vscode
 despacito.wav
 config.ini
+bin/map.bin

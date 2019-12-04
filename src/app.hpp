@@ -16,6 +16,7 @@ typedef struct {
 	uint8_t fps;
 	uint32_t window_width;
 	uint32_t window_height;
+	bool music;
 } config;
 
 class App {
