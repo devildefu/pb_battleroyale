@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 #include <vector>
+#include <algorithm>
 
 #include <eventhandler.hpp>
 #include <map/mapmanager.hpp>

@@ -1,6 +1,5 @@
 build
-bin/pb_battleroyale*
+bin/*
+!bin/assets
 .vscode
 despacito.wav
-config.ini
-bin/map.bin

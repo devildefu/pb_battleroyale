@@ -32,10 +32,21 @@ Location::Location(sf::Texture& background, sf::Texture& tileset, const char* fn
 	load(fname);
 }
 
-void Location::create_from_array(uint16_t map[], int size) {	
+void Location::create_from_array(uint16_t map[], int size) {
+	int8_t pos_x = -1; // 0 % 18 == 0, so we need to set to -1
+	int8_t pos_y = 0;
+
 	for(int i = 0; i < size; i++) {
+		// Should we increase pos_x?
+		if(i % 18 == 0) {
+			pos_x++;
+			pos_y = 0;
+		} else {
+			pos_y++;
+		}
+
 		int id = map[i];
-		if(id > 0) set_obstacle(i, 0, ObstacleManager().get(id-1));
+		if(id > 0) set_obstacle(pos_x, pos_y, ObstacleManager().get(id-1));
 	}
 }
 

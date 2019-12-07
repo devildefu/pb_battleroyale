@@ -4,13 +4,15 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
+	// Check if we have map.bin, if not create it
 	if(!Helpers::file_exists("map.bin")) {
 		SPDLOG_INFO("Map file not found, creating...");
-		uint16_t map[7] = {1, 4, 0, 5, 10, 11, 15};
-		location->save("map.bin", map, 7);
+		uint16_t map[MAP_BLOCKS_NUMBER];
+		std::fill(map, map+MAP_BLOCKS_NUMBER, 1);
+		location->save("map.bin", map);
 	}
+
 	location = new Location(TextureManager().get("assets/backgrounds/19"), TextureManager().get_obstacles(), "map.bin");
-	location->set_obstacle(1, 1, ObstacleManager().get(0));
 	map.add_location_to_array(0, 0, location);
 }
 
