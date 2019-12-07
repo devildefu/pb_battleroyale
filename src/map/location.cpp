@@ -11,14 +11,14 @@ Location::Location(sf::Texture& background, sf::Texture& tileset)
 	: background(background)
 	, tileset(tileset) {
 	vertices.setPrimitiveType(sf::Quads);
-	vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
+	vertices.resize(LOCATION_WIDTH * LOCATION_HEIGHT * 4);
 }
 
 Location::Location(sf::Texture& background, sf::Texture& tileset, uint16_t map[], int size)
 	: background(background)
 	, tileset(tileset) {
 	vertices.setPrimitiveType(sf::Quads);
-	vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
+	vertices.resize(LOCATION_WIDTH * LOCATION_HEIGHT * 4);
 
 	create_from_array(map, size);
 }
@@ -27,7 +27,7 @@ Location::Location(sf::Texture& background, sf::Texture& tileset, const char* fn
 	: background(background)
 	, tileset(tileset) {
 	vertices.setPrimitiveType(sf::Quads);
-	vertices.resize(MAP_WIDTH * MAP_HEIGHT * 4);
+	vertices.resize(LOCATION_WIDTH * LOCATION_HEIGHT * 4);
 
 	load(fname);
 }
@@ -53,7 +53,7 @@ void Location::create_from_array(uint16_t map[], int size) {
 void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
 	if(obstacle == nullptr) return;
 
-	sf::Vertex* quad = &vertices[(y * MAP_WIDTH + x) * 4];
+	sf::Vertex* quad = &vertices[(y * LOCATION_WIDTH + x) * 4];
 	// Calculation of the position
 	quad[0].position = sf::Vector2f(x * SCALE, y * SCALE);
 	quad[1].position = sf::Vector2f((x + 1) * SCALE, y * SCALE);
