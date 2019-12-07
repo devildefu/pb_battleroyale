@@ -10,9 +10,9 @@
 
 #include <managers/obstaclemanager.hpp>
 
-#define MAP_WIDTH 32
-#define MAP_HEIGHT 18
-#define MAP_BLOCKS_NUMBER MAP_WIDTH*MAP_HEIGHT
+const uint8_t MAP_WIDTH = 32;
+const uint8_t MAP_HEIGHT = 18;
+const uint8_t MAP_BLOCKS_NUMBER = MAP_WIDTH*MAP_HEIGHT;
 
 class Location : public sf::Drawable, public sf::Transformable {
 public:

@@ -3,12 +3,13 @@
 #include "location.hpp"
 #include <spdlog/spdlog.h>
 
-const int MAXIMUM_LOCATIONS = 1000;
+// It is useful for reducing the use of RAM
+const uint16_t MAXIMUM_LOCATIONS = 1000;
 
 class MapManager {
 private:
-	int location_x = 0;
-	int location_y = 0;
+	uint16_t location_x = 0;
+	uint16_t location_y = 0;
 
 	Location* locations[MAXIMUM_LOCATIONS * MAXIMUM_LOCATIONS];
 
