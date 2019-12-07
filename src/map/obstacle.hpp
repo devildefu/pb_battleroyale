@@ -7,16 +7,17 @@
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 
+using Vector2c = sf::Vector2<uint8_t>;
+
 class Obstacle {
 private:
-	int id = 0;
+	uint16_t id = 0;
 
 	bool collision = false;
 	bool shadow = false;
 
-	int x;
-	int y;
-
+	Vector2c pos;
+	Vector2c size;
 public:
 	Obstacle() {}
 
@@ -55,19 +56,19 @@ public:
      */
 	inline bool get_shadow_state() { return shadow; }
 
-	inline void set_position(const sf::Vector2f& pos) {
-		x = pos.x;
-		y = pos.y;
+	inline void set_position(const Vector2c& pos) {
+		this->pos.x = pos.x;
+		this->pos.y = pos.y;
 	}
 	inline void set_position(int x, int y) {
-		this->x = x;
-		this->y = y;
+		this->pos.x = x;
+		this->pos.y = y;
 	}
 
-	inline sf::Vector2f get_position() {
-		sf::Vector2f vec;
-		vec.x = x;
-		vec.y = y;
+	inline Vector2c get_position() {
+		Vector2c vec;
+		vec.x = this->pos.x;
+		vec.y = this->pos.y;
 		return vec;
 	}
 };
