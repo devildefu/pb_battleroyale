@@ -10,7 +10,7 @@ private:
 	int location_x = 0;
 	int location_y = 0;
 
-	Location* locations[MAXIMUM_LOCATIONS][MAXIMUM_LOCATIONS];
+	Location* locations[MAXIMUM_LOCATIONS * MAXIMUM_LOCATIONS];
 
 public:
 	MapManager() {}
@@ -45,12 +45,14 @@ public:
 			return;
 		}
 
-		if(locations[x][y]) {
-			SPDLOG_WARN("Trying to override Location object! x: " + std::to_string(x) + " y: " + std::to_string(y));
-			locations[x][y] = location;
+		uint32_t id = y * MAXIMUM_LOCATIONS + x;
+
+		if(locations[id]) {
+			SPDLOG_WARN("Trying to override Location object! x: {}, y: {}", x, y);
+			locations[id] = location;
 		} else {
-			SPDLOG_INFO("Adding location to array... x: " + std::to_string(x) + " y: " + std::to_string(y));
-			locations[x][y] = location;
+			SPDLOG_INFO("Adding location to array... x: {}, y: {}", x, y);
+			locations[id] = location;
 		}
 	}
 

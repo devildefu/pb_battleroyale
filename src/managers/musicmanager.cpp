@@ -33,10 +33,7 @@ void impl::MusicManager::play(const std::string& name) {
 }
 
 bool impl::MusicManager::exists(const std::string& name) {
-	if(this->musics.find(name) == this->musics.end())
-		return false;
-	else
-		return true;
+	return !(this->musics.find(name) == this->musics.end());
 }
 
 void impl::MusicManager::clear() {
@@ -46,17 +43,17 @@ void impl::MusicManager::clear() {
 }
 
 void impl::MusicManager::stop() {
-	current_music->stop();
+	if(current_music) current_music->stop();
 }
 
 void impl::MusicManager::pause() {
-	current_music->pause();
+	if(current_music) current_music->pause();
 }
 
 void impl::MusicManager::resume() {
-	current_music->play();
+	if(current_music) current_music->play();
 }
 
 void impl::MusicManager::set_volume(float volume) {
-	current_music->setVolume(volume);
+	if(current_music) current_music->setVolume(volume);
 }

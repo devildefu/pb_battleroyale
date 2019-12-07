@@ -21,10 +21,15 @@ public:
 
 	sf::Texture& get(std::string texture);
 	sf::Texture& get_obstacles() { return obstacles; }
+
 	bool load(std::string texture);
 	bool load_obstacle(std::string texture);
-	/** Returns true if can delete or returns false if can't delete or texture isn't loaded */
+
+	/** 
+	 * Returns true if can delete or returns false if can't delete or texture isn't loaded 
+	 */
 	bool remove(std::string texture);
+
 	void clear();
 	bool exists(std::string texture);
 private:

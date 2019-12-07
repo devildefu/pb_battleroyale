@@ -30,6 +30,7 @@ sf::Texture& impl::TextureManager::get(std::string texture) {
 	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 
+		// Try to load texture
 		if(!txt->loadFromFile(texture + ".png")) {
 			SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
 			txt->loadFromMemory(invalidtexture, size_invalidtexture);
@@ -47,6 +48,7 @@ bool impl::TextureManager::load(std::string texture) {
 	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 
+		// Try to load texture
 		if(!txt->loadFromFile(texture + ".png")) {
 			SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
 			txt->loadFromMemory(invalidtexture, size_invalidtexture);
@@ -93,9 +95,5 @@ void impl::TextureManager::clear() {
 }
 
 bool impl::TextureManager::exists(std::string texture) {
-	if(this->textures.find(texture) == this->textures.end()) {
-		return false;
-	} else {
-		return true;
-	}
+	return !(this->textures.find(texture) == this->textures.end());
 }

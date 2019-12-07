@@ -72,6 +72,7 @@ void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
 
 void Location::save(const char* fname, uint16_t* map, int size) {
 	FILE* f = fopen(fname, "wb");
+	// Failed to create a file
 	if(f == NULL) return;
 
 	fwrite(map, sizeof(uint16_t), size, f);
@@ -80,6 +81,7 @@ void Location::save(const char* fname, uint16_t* map, int size) {
 
 void Location::load(const char* fname) {
 	FILE* f = fopen(fname, "rb");
+	// Failed to create a file
 	if(f == NULL) return;
 
 	fseek(f, 0, SEEK_END);
