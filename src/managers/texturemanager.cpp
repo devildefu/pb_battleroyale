@@ -5,15 +5,25 @@ impl::TextureManager::TextureManager() {
 	SPDLOG_INFO("Initialized TextureManager");
 	obstacle_packer = new TexturePacker(obstacles);
 
+	// TODO: Rewrite this. We load TWO TIME textures (once in app.cpp, once here), which slows down the time of loading.
 	int i = 0;
+	int size_x = 0;
+	int size_y = 0;
 
 	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
 		i++;
+		sf::Texture tex;
+		tex.loadFromFile("assets/obstacles/" + std::to_string(i) + ".png");
+
+		size_x += tex.getSize().x;
+		if(size_y < tex.getSize().y) {
+			size_y = tex.getSize().y;
+		}
 	}
 
 	// TODO: Resizing when needed
-	SPDLOG_INFO("{}", i*10);
-	obstacles.create(i*10, 10);
+	SPDLOG_INFO("{} {}", size_x, size_y);
+	obstacles.create(size_x, size_y);
 }
 
 impl::TextureManager::~TextureManager() {
@@ -62,7 +72,7 @@ bool impl::TextureManager::load(std::string texture) {
 	}
 }
 
-bool impl::TextureManager::load_obstacle(std::string texture) {
+sf::IntRect impl::TextureManager::load_obstacle(std::string texture) {
 	SPDLOG_INFO("Loading obstacle \"{}\"", texture);
 
 	sf::Texture txt;
@@ -70,12 +80,10 @@ bool impl::TextureManager::load_obstacle(std::string texture) {
 		// Failed to load
 		SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
 		txt.loadFromMemory(invalidtexture, size_invalidtexture);
-		return false;
 	}
 
 	// Pack
-	obstacle_packer->pack(txt);
-	return true;
+	return obstacle_packer->pack(txt);;
 }
 
 bool impl::TextureManager::remove(std::string texture) {

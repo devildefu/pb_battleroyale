@@ -7,8 +7,6 @@
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 
-using Vector2c = sf::Vector2<uint8_t>;
-
 class Obstacle {
 private:
 	uint16_t id = 0;
@@ -16,8 +14,7 @@ private:
 	bool collision = false;
 	bool shadow = false;
 
-	Vector2c pos;
-	Vector2c size;
+	sf::IntRect rect;
 public:
 	Obstacle() {}
 
@@ -28,13 +25,21 @@ public:
 		this->collision = collision;
 		this->shadow = shadow;
 		this->id = obstacle.get_id();
+		this->rect = obstacle.get_rect();
 	}
 
 	Obstacle(uint16_t id, bool collision = false, bool shadow = false) {
-
 		this->collision = collision;
 		this->shadow = shadow;
 		this->id = id;
+		this->rect = sf::IntRect(0, 0, 0, 0);
+	}
+
+	Obstacle(uint16_t id, bool collision, bool shadow, sf::IntRect rect) {
+		this->collision = collision;
+		this->shadow = shadow;
+		this->id = id;
+		this->rect = rect;
 	}
 
 	~Obstacle() {
@@ -56,19 +61,11 @@ public:
      */
 	inline bool get_shadow_state() { return shadow; }
 
-	inline void set_position(const Vector2c& pos) {
-		this->pos.x = pos.x;
-		this->pos.y = pos.y;
-	}
-	inline void set_position(int x, int y) {
-		this->pos.x = x;
-		this->pos.y = y;
+	inline void set_rect(sf::IntRect& rect) {
+		this->rect = rect;
 	}
 
-	inline Vector2c get_position() {
-		Vector2c vec;
-		vec.x = this->pos.x;
-		vec.y = this->pos.y;
-		return vec;
+	inline sf::IntRect get_rect() {
+		return rect;
 	}
 };

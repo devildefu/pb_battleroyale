@@ -46,7 +46,7 @@ void Location::create_from_array(uint16_t map[], int size) {
 		}
 
 		int id = map[i];
-		if(id > 0) set_obstacle(pos_x, pos_y, ObstacleManager().get(id-1));
+		if(id > 0) set_obstacle(pos_x, pos_y, ObstacleManager().get(id));
 	}
 }
 
@@ -61,13 +61,14 @@ void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
 	quad[3].position = sf::Vector2f(x * SCALE, (y + 1) * SCALE);
 
 	int id = obstacle->get_id();
+	sf::IntRect rect = obstacle->get_rect();	
 
 	// TODO: Texture's Y detection
 	// Calculation of the texture position
-	quad[0].texCoords = sf::Vector2f(id * SCALE, 0 * SCALE);
-	quad[1].texCoords = sf::Vector2f((id + 1) * SCALE, 0 * SCALE);
-	quad[2].texCoords = sf::Vector2f((id + 1) * SCALE, (0 + 1) * SCALE);
-	quad[3].texCoords = sf::Vector2f(id * SCALE, (0 + 1) * SCALE);
+	quad[0].texCoords = sf::Vector2f(rect.left, rect.top);
+	quad[1].texCoords = sf::Vector2f(rect.left + rect.width, rect.top);
+	quad[2].texCoords = sf::Vector2f(rect.left + rect.width, rect.top + rect.height);
+	quad[3].texCoords = sf::Vector2f(rect.left, rect.top + rect.height);
 }
 
 void Location::save(const char* fname, uint16_t* map, int size) {

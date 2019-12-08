@@ -23,7 +23,7 @@ public:
 	sf::Texture& get_obstacles() { return obstacles; }
 
 	bool load(std::string texture);
-	bool load_obstacle(std::string texture);
+	sf::IntRect load_obstacle(std::string texture);
 
 	/** 
 	 * Returns true if can delete or returns false if can't delete or texture isn't loaded 
