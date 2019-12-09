@@ -17,7 +17,7 @@ add_executable(pb_battleroyale
 	${source}/app.cpp
 	${source}/main.cpp
 	${source}/helpers.cpp
-	#${source}/spdlog.cpp
+	${source}/spdlog.cpp
 	${source}/ini.c
 	${source}/managers/texturemanager.cpp
 	${source}/texturepacker.cpp
@@ -26,4 +26,10 @@ add_executable(pb_battleroyale
 	${source}/managers/obstaclemanager.cpp
 )
 
+add_definitions(-DSPDLOG_COMPILED_LIB)
+
 target_link_libraries(pb_battleroyale sfml-graphics sfml-window sfml-system sfml-audio)
+
+if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+target_link_libraries(pb_battleroyale pthread)
+endif()
