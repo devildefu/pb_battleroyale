@@ -2,4 +2,6 @@ build
 bin/*
 !bin/assets
 .vscode
+.vs
 despacito.wav
+CMakeSettings.json

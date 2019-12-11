@@ -63,7 +63,6 @@ void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
 	int id = obstacle->get_id();
 	sf::IntRect rect = obstacle->get_rect();	
 
-	// TODO: Texture's Y detection
 	// Calculation of the texture position
 	quad[0].texCoords = sf::Vector2f(rect.left, rect.top);
 	quad[1].texCoords = sf::Vector2f(rect.left + rect.width, rect.top);
