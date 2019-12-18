@@ -16,7 +16,7 @@ const uint32_t LOCATION_BLOCKS_NUMBER = LOCATION_WIDTH*LOCATION_HEIGHT;
 
 class Location : public sf::Drawable, public sf::Transformable {
 public:
-	Location();
+	Location(Location& loc);
 	Location(sf::Texture& background, sf::Texture& tileset);
 	Location(sf::Texture& background, sf::Texture& tileset, uint16_t map[], int size = LOCATION_BLOCKS_NUMBER);
 	Location(sf::Texture& background, sf::Texture& tileset, const char* fname);

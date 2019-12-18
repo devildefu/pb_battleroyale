@@ -7,6 +7,7 @@ void MainHandler::init() {
 	// Check if we have map.bin, if not create it
 	if(!Helpers::file_exists("map.bin")) {
 		SPDLOG_INFO("Map file not found, creating...");
+
 		uint16_t map[LOCATION_BLOCKS_NUMBER];
 		std::fill(map, map+LOCATION_BLOCKS_NUMBER, 1);
 		location->save("map.bin", map);

@@ -86,7 +86,7 @@ App::App()
 	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
 		i++;
 		sf::IntRect rect = TextureManager().load_obstacle("assets/obstacles/" + std::to_string(i));
-		ObstacleManager().add(Obstacle(i, false, false, rect));
+		ObstacleManager().add(Obstacle(i, rect, false, false));
 	}
 
 	if(config.music) {

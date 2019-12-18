@@ -12,3 +12,20 @@ void MapManager::update_location(sf::RenderWindow* window) {
 		window->draw(*current_location);
 	}
 }
+
+void MapManager::add_location_to_array(int x, int y, Location* location) {
+	if(!location) {
+		SPDLOG_ERROR("location is undefined! Aborting.");
+		return;
+	}
+
+	uint32_t id = y * MAXIMUM_LOCATIONS + x;
+
+	if(locations[id]) {
+		SPDLOG_WARN("Trying to override Location object! x: {}, y: {}", x, y);
+		locations[id] = location;
+	} else {
+		SPDLOG_INFO("Adding location to array... x: {}, y: {}", x, y);
+		locations[id] = location;
+	}
+}

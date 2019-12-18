@@ -28,7 +28,7 @@ public:
 		this->rect = obstacle.get_rect();
 	}
 
-	Obstacle(uint16_t id, bool collision, bool shadow, sf::IntRect rect) {
+	Obstacle(uint16_t id, sf::IntRect rect, bool collision, bool shadow) {
 		this->collision = collision;
 		this->shadow = shadow;
 		this->id = id;

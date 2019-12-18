@@ -4,7 +4,11 @@
 
 const int SCALE = 10;
 
-Location::Location() {
+Location::Location(Location& loc) 
+	: background(loc.background)
+	, tileset(loc.tileset) {
+	vertices.setPrimitiveType(sf::Quads);
+	vertices.resize(LOCATION_WIDTH * LOCATION_HEIGHT * 4);
 }
 
 Location::Location(sf::Texture& background, sf::Texture& tileset)

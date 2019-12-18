@@ -14,7 +14,11 @@ private:
 	Location* locations[MAXIMUM_LOCATIONS * MAXIMUM_LOCATIONS];
 
 public:
-	MapManager() {}
+	MapManager() {
+		// An empty array can have data from RAM, so we need to fill it with something
+		std::fill(locations, locations + (MAXIMUM_LOCATIONS * MAXIMUM_LOCATIONS), nullptr);
+	}
+
 	~MapManager() {}
 
 	/**
@@ -40,22 +44,7 @@ public:
 	/**
      *  Add Location object to array
      */
-	void add_location_to_array(int x, int y, Location* location) {
-		if(!location) {
-			SPDLOG_ERROR("location is undefined! Aborting.");
-			return;
-		}
-
-		uint32_t id = y * MAXIMUM_LOCATIONS + x;
-
-		if(locations[id]) {
-			SPDLOG_WARN("Trying to override Location object! x: {}, y: {}", x, y);
-			locations[id] = location;
-		} else {
-			SPDLOG_INFO("Adding location to array... x: {}, y: {}", x, y);
-			locations[id] = location;
-		}
-	}
+	void add_location_to_array(int x, int y, Location* location);
 
 	void update_location(sf::RenderWindow* window);
 };
