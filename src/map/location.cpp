@@ -53,11 +53,11 @@ void Location::create_from_array(uint16_t map[], int size) {
 void Location::set_obstacle(int x, int y, Obstacle* obstacle) {
 	if(obstacle == nullptr) return;
 
-	if(x >= LOCATION_WIDTH-1 || x < 0) {
+	if(x >= LOCATION_WIDTH || x < 0) {
 		SPDLOG_ERROR("Position x is too small or too large!");
 		return;
 	}
-	else if(y >= LOCATION_HEIGHT-1 || y < 0) {
+	else if(y >= LOCATION_HEIGHT || y < 0) {
 		SPDLOG_ERROR("Position y is too small or too large!");
 		return;
 	}

@@ -83,7 +83,6 @@ App::App()
 
 	// Load all blocks to TextureManager and ObstacleManager
 	int i = 0;
-	ObstacleManager().add(Obstacle(0, false, false));
 	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
 		i++;
 		sf::IntRect rect = TextureManager().load_obstacle("assets/obstacles/" + std::to_string(i));
