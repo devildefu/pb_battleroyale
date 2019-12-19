@@ -52,7 +52,6 @@ App::App()
 
 		SPDLOG_INFO("DesktopMode: {}x{}", width, height);
 
-		// Let's find the smallest number
 		short ratio = std::min(width, height);
 
 		// Should we divide by 320 or 180?
@@ -75,13 +74,11 @@ App::App()
 
 	SPDLOG_INFO("Parsing completed");
 
-	// Check if the directory exists
 	if(!Helpers::file_exists("assets/obstacles/")) {
 		SPDLOG_ERROR("\"assets/obstacles/\" not found!");
 		exit(1);
 	}
 
-	// Load all blocks to TextureManager and ObstacleManager
 	int i = 0;
 	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
 		i++;

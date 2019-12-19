@@ -4,7 +4,6 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
-	// Check if we have map.bin, if not create it
 	if(!Helpers::file_exists("map.bin")) {
 		SPDLOG_INFO("Map file not found, creating...");
 

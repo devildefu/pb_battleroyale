@@ -3,7 +3,6 @@
 impl::MusicManager::~MusicManager() {
 	SPDLOG_INFO("Cleaning music");
 
-	// Clean up
 	clear();
 	current_music = nullptr;
 }

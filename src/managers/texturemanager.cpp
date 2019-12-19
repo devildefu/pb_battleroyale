@@ -40,7 +40,6 @@ sf::Texture& impl::TextureManager::get(std::string texture) {
 	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 
-		// Try to load texture
 		if(!txt->loadFromFile(texture + ".png")) {
 			SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
 			txt->loadFromMemory(invalidtexture, size_invalidtexture);
@@ -58,7 +57,6 @@ bool impl::TextureManager::load(std::string texture) {
 	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 
-		// Try to load texture
 		if(!txt->loadFromFile(texture + ".png")) {
 			SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
 			txt->loadFromMemory(invalidtexture, size_invalidtexture);
@@ -77,12 +75,10 @@ sf::IntRect impl::TextureManager::load_obstacle(std::string texture) {
 
 	sf::Texture txt;
 	if(!txt.loadFromFile(texture + ".png")) {
-		// Failed to load
 		SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
 		txt.loadFromMemory(invalidtexture, size_invalidtexture);
 	}
 
-	// Pack
 	return obstacle_packer->pack(txt);;
 }
 

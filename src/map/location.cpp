@@ -37,11 +37,11 @@ Location::Location(sf::Texture& background, sf::Texture& tileset, const char* fn
 }
 
 void Location::create_from_array(uint16_t map[], int size) {
-	int8_t pos_x = -1; // 0 % 18 == 0, so we need to set to -1
+	int8_t pos_x = -1; // 0 % 18 will return 0, so we need to set to -1
 	int8_t pos_y = 0;
 
 	for(int i = 0; i < size; i++) {
-		// Should we increase pos_x?
+		// Should we increase pos_y?
 		if(i % 18 == 0) {
 			pos_x++;
 			pos_y = 0;

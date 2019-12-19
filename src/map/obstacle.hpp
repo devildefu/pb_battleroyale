@@ -35,10 +35,6 @@ public:
 		this->rect = rect;
 	}
 
-	~Obstacle() {
-		//delete sprite;
-	}
-
 	/**
      *  Return obstacle's id
      */
