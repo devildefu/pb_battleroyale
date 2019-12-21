@@ -2,7 +2,7 @@
 #include <map/location.hpp>
 #include <managers/texturemanager.hpp>
 
-const int SCALE = 10;
+constexpr int SCALE = 10;
 
 Location::Location(Location& loc) 
 	: background(loc.background)

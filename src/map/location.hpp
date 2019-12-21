@@ -10,9 +10,9 @@
 
 #include <managers/obstaclemanager.hpp>
 
-const uint8_t LOCATION_WIDTH = 32;
-const uint8_t LOCATION_HEIGHT = 18;
-const uint32_t LOCATION_BLOCKS_NUMBER = LOCATION_WIDTH*LOCATION_HEIGHT;
+constexpr uint8_t LOCATION_WIDTH = 32;
+constexpr uint8_t LOCATION_HEIGHT = 18;
+constexpr uint32_t LOCATION_BLOCKS_NUMBER = LOCATION_WIDTH*LOCATION_HEIGHT;
 
 class Location : public sf::Drawable, public sf::Transformable {
 public:

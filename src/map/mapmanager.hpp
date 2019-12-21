@@ -4,7 +4,7 @@
 #include <spdlog/spdlog.h>
 
 // It is useful for reducing the use of RAM
-const uint16_t MAXIMUM_LOCATIONS = 1000;
+constexpr uint16_t MAXIMUM_LOCATIONS = 1000;
 
 class MapManager {
 private:
