@@ -18,7 +18,7 @@ void impl::ObstacleManager::clear() {
 bool impl::ObstacleManager::add(Obstacle obstacle) {
 	int id = obstacle.get_id();
 
-	SPDLOG_INFO("Adding obstacle, id: {}", id);
+	//SPDLOG_INFO("Adding obstacle, id: {}", id);
 
 	if(obstacles.find(id) == obstacles.end()) {
 		obstacles.emplace(id, new Obstacle(obstacle));

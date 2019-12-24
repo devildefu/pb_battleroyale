@@ -4,16 +4,17 @@ Location* location;
 sf::Texture texture;
 
 void MainHandler::init() {
-	if(!Helpers::file_exists("map.bin")) {
+	if(map.init()) {
+		exit(1);
+	}
+
+	if(!Helpers::file_exists("assets/locations/0,0.pbmap")) {
 		SPDLOG_INFO("Map file not found, creating...");
 
 		uint16_t map[LOCATION_BLOCKS_NUMBER];
-		std::fill(map, map+LOCATION_BLOCKS_NUMBER, 1);
-		location->save("map.bin", map);
+		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 1);
+		location->save("assets/locations/0,0.pbmap", map);
 	}
-
-	location = new Location(TextureManager().get("assets/backgrounds/19"), TextureManager().get_obstacles(), "map.bin");
-	map.add_location_to_array(0, 0, location);
 }
 
 void MainHandler::draw(sf::RenderWindow* window) {
@@ -22,7 +23,7 @@ void MainHandler::draw(sf::RenderWindow* window) {
 	for(auto&& object : this->objects)
 		object->draw(*window);
 
-	map.update_location(window);
+	map.render_location(window);
 
 	window->display();
 }
@@ -30,6 +31,8 @@ void MainHandler::draw(sf::RenderWindow* window) {
 void MainHandler::update(sf::RenderWindow* window) {
 	for(auto&& object : this->objects)
 		object->update();
+
+	map.update_location(window);
 }
 void MainHandler::clear() {
 	for(auto&& object : this->objects)

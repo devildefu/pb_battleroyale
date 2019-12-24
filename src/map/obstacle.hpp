@@ -7,8 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 
-enum ObstacleState {
-	HasCollision,
+enum ObstacleFlag {
+	IsSolid,
 	HasShadow
 };
 

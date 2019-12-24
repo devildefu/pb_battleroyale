@@ -53,7 +53,7 @@ sf::Texture& impl::TextureManager::get(std::string texture) {
 }
 
 bool impl::TextureManager::load(std::string texture) {
-	SPDLOG_INFO("Loading texture \"{}\"", texture);
+	//SPDLOG_INFO("Loading texture \"{}\"", texture);
 	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 
@@ -71,7 +71,7 @@ bool impl::TextureManager::load(std::string texture) {
 }
 
 sf::IntRect impl::TextureManager::load_obstacle(std::string texture) {
-	SPDLOG_INFO("Loading obstacle \"{}\"", texture);
+	//SPDLOG_INFO("Loading obstacle \"{}\"", texture);
 
 	sf::Texture txt;
 	if(!txt.loadFromFile(texture + ".png")) {
