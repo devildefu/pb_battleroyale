@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdio>
 #include <spdlog/spdlog.h>
+#include <fmt/format.h>
 
 #include <helpers.hpp>
 #include <managers/texturemanager.hpp>
@@ -11,6 +12,10 @@
 
 // It is useful for reducing the use of RAM
 constexpr uint16_t MAXIMUM_LOCATIONS = 1000;
+
+static char LOCATION_PATH[] = "assets/locations/";
+static char LOCATION_EXT[] = "pbmap";
+static char LOCATION_DEFAULT_BACKGROUND[] = "assets/backgrounds/19";
 
 // Calculates offset from beginning of the array
 #define LOC_POS(x, y) y * MAXIMUM_LOCATIONS + x;

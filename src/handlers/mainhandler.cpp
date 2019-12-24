@@ -8,12 +8,13 @@ void MainHandler::init() {
 		exit(1);
 	}
 
-	if(!Helpers::file_exists("assets/locations/0,0.pbmap")) {
+	std::string first_loc = Helpers::location_path(0, 0);
+	if(!Helpers::file_exists(first_loc)) {
 		SPDLOG_INFO("Map file not found, creating...");
 
 		uint16_t map[LOCATION_BLOCKS_NUMBER];
 		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 1);
-		location->save("assets/locations/0,0.pbmap", map);
+		location->save(first_loc.c_str(), map);
 	}
 }
 

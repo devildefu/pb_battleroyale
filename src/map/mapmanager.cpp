@@ -1,16 +1,12 @@
 #include <map/mapmanager.hpp>
 
-constexpr char* LOCATIONS_PATH = "assets/locations/";
-constexpr char* LOCATION_EXT = ".pbmap";
-constexpr char* LOCATION_DEFAULT_BACKGROUND = "assets/backgrounds/19";
-
 bool MapManager::init() {
-	if(!Helpers::file_exists(LOCATIONS_PATH)) {
-		SPDLOG_ERROR("\"{}\" not found!", LOCATIONS_PATH);
+	if(!Helpers::file_exists(LOCATION_PATH)) {
+		SPDLOG_ERROR("\"{}\" not found!", LOCATION_PATH);
 		return true;
 	}
 
-	for(const auto& entry : fs::directory_iterator(LOCATIONS_PATH)) {
+	for(const auto& entry : fs::directory_iterator(LOCATION_PATH)) {
 		std::string path = entry.path().string();
 		std::string filename = entry.path().filename().string();
 

@@ -10,10 +10,10 @@ impl::TextureManager::TextureManager() {
 	int size_x = 0;
 	int size_y = 0;
 
-	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
+	for(const auto& entry : std::filesystem::directory_iterator(OBSTACLE_PATH)) {
 		i++;
 		sf::Texture tex;
-		tex.loadFromFile("assets/obstacles/" + std::to_string(i) + ".png");
+		tex.loadFromFile(OBSTACLE_PATH + std::to_string(i) + ".png");
 
 		size_x += tex.getSize().x;
 		if(size_y < tex.getSize().y) {

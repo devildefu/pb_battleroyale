@@ -12,13 +12,16 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 set(source ${CMAKE_SOURCE_DIR}/src)
 
 add_executable(pb_battleroyale
+	${source}/spdlog.cpp
+	${source}/ini.c
+	${source}/posix.cc
+	${source}/format.cc
+
 	${source}/handlers/mainhandler.cpp
 	${source}/map/location.cpp
 	${source}/app.cpp
 	${source}/main.cpp
 	${source}/helpers.cpp
-	${source}/spdlog.cpp
-	${source}/ini.c
 	${source}/managers/texturemanager.cpp
 	${source}/texturepacker.cpp
 	${source}/managers/musicmanager.cpp

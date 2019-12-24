@@ -74,15 +74,15 @@ App::App()
 
 	SPDLOG_INFO("Parsing completed");
 
-	if(!Helpers::file_exists("assets/obstacles/")) {
-		SPDLOG_ERROR("\"assets/obstacles/\" not found!");
+	if(!Helpers::file_exists(OBSTACLE_PATH)) {
+		SPDLOG_ERROR("\"{}\" not found!", OBSTACLE_PATH);
 		exit(1);
 	}
 
 	int i = 0;
-	for(const auto& entry : std::filesystem::directory_iterator("assets/obstacles/")) {
+	for(const auto& entry : std::filesystem::directory_iterator(OBSTACLE_PATH)) {
 		i++;
-		sf::IntRect rect = TextureManager().load_obstacle("assets/obstacles/" + std::to_string(i));
+		sf::IntRect rect = TextureManager().load_obstacle(OBSTACLE_PATH + std::to_string(i));
 		ObstacleManager().add(Obstacle(i, rect, ObstacleFlag::IsSolid | ObstacleFlag::HasShadow));
 	}
 

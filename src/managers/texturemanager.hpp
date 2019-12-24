@@ -7,6 +7,8 @@
 
 #include <texturepacker.hpp>
 
+static char OBSTACLE_PATH[] = "assets/obstacles/";
+
 namespace impl {
 class TextureManager {
 public:

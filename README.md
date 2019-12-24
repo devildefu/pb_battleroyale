@@ -15,10 +15,11 @@ These instructions will show you how to install the necessary stuff and compile 
 - CMake
 
 ### Compiling
-Compilation is very easy. Just open the terminal and go to the project directory, enter `cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Debug` (debug mode) and then `cmake --build build`. CMake will do the rest. After completing the compilation, you should find `pb_battleroyale.exe` or `pb_battleroyale` in the build folder.
+Compilation is very easy. Just open the terminal and go to the project directory, enter `./builder.sh br`. Script will do the rest.
 
 ### Built Using
 - [inih](https://github.com/benhoyt/inih) - .ini file parser
 - [spdlog](https://github.com/gabime/spdlog) - logging
+- [fmtlib](https://github.com/fmtlib/fmt) - formatting library (I love it!)
 - [pbloader](https://github.com/CodersArmyTeam/pbloader) - my old project to add a modapi to PB. Part of the code 
 and the knowledge of how PB works comes from this project.

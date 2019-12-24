@@ -1,11 +1,15 @@
 #include <helpers.hpp>
 
-bool Helpers::file_exists(const char* fname) {
+bool Helpers::file_exists(const std::string& fname) {
 	#ifdef _MSC_VER
-		DWORD attr = GetFileAttributesA(fname);
+		DWORD attr = GetFileAttributesA(fname.c_str());
 		return (attr != INVALID_FILE_ATTRIBUTES);
 	#else
 		struct stat buffer;
-		return (stat(fname, &buffer) == 0);
+		return (stat(fname.c_str(), &buffer) == 0);
 	#endif
+}
+
+std::string Helpers::location_path(int x, int y) {
+	return fmt::format("{}/{},{}.{}", LOCATION_PATH, x, y, LOCATION_EXT);
 }
