@@ -7,14 +7,12 @@
 #include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 
+enum ObstacleState {
+	HasCollision,
+	HasShadow
+};
+
 class Obstacle {
-private:
-	uint16_t id = 0;
-
-	bool collision = false;
-	bool shadow = false;
-
-	sf::IntRect rect;
 public:
 	Obstacle() {}
 
@@ -22,39 +20,24 @@ public:
      *  Create obstacle from other obstacle
      */
 	Obstacle(Obstacle& obstacle) {
-		this->collision = collision;
-		this->shadow = shadow;
+		this->state = obstacle.get_state();
 		this->id = obstacle.get_id();
 		this->rect = obstacle.get_rect();
 	}
 
-	Obstacle(uint16_t id, sf::IntRect rect, bool collision, bool shadow) {
-		this->collision = collision;
-		this->shadow = shadow;
+	Obstacle(uint16_t id, sf::IntRect rect, int state) {
+		this->state = state;
 		this->id = id;
 		this->rect = rect;
 	}
 
-	/**
-     *  Return obstacle's id
-     */
 	inline uint16_t get_id() { return id; }
+	inline sf::IntRect get_rect() { return rect; }
+	inline int get_state() { return state; }
 
-	/**
-     *  Return obstacle's collision state
-     */
-	inline bool get_collision_state() { return collision; }
-
-	/**
-     *  Return obstacle's shadow state
-     */
-	inline bool get_shadow_state() { return shadow; }
-
-	inline void set_rect(sf::IntRect& rect) {
-		this->rect = rect;
-	}
-
-	inline sf::IntRect get_rect() {
-		return rect;
-	}
+	inline void set_rect(sf::IntRect& rect) { this->rect = rect; }
+private:
+	uint16_t id = 0;
+	int state;
+	sf::IntRect rect;
 };
