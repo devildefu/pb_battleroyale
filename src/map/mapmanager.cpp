@@ -31,11 +31,11 @@ bool MapManager::init() {
 	return false;
 }
 
-void MapManager::update_location(sf::RenderWindow* window) {
-	// UNIMPLEMENTED
+void MapManager::update(sf::RenderWindow* window) {
+	
 }
 
-void MapManager::render_location(sf::RenderWindow* window) {
+void MapManager::render(sf::RenderWindow* window) {
 	// TODO: Make that the rendering was similar to PB
 
 	uint32_t id = location_y * MAXIMUM_LOCATIONS + location_x;

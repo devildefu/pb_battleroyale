@@ -24,7 +24,7 @@ void MainHandler::draw(sf::RenderWindow* window) {
 	for(auto&& object : this->objects)
 		object->draw(*window);
 
-	map.render_location(window);
+	map.render(window);
 
 	window->display();
 }
@@ -33,7 +33,7 @@ void MainHandler::update(sf::RenderWindow* window) {
 	for(auto&& object : this->objects)
 		object->update();
 
-	map.update_location(window);
+	map.update(window);
 }
 void MainHandler::clear() {
 	for(auto&& object : this->objects)

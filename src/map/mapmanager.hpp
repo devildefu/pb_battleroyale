@@ -46,8 +46,8 @@ public:
 	bool load_location(int x, int y, const std::string& path, sf::Texture& background);
 	void add_location_to_array(int x, int y, Location* location);
 
-	void update_location(sf::RenderWindow* window);
-	void render_location(sf::RenderWindow* window);
+	void update(sf::RenderWindow* window);
+	void render(sf::RenderWindow* window);
 private:
 	uint16_t location_x = 0;
 	uint16_t location_y = 0;
