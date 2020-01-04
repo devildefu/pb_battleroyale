@@ -4,7 +4,7 @@
 ## About
 Perypetie Boba but battle royale + open source, the game is written in C++ using SFML (because most of us know C++ well).
 
-[Link to the original game](https://pb.olekolek1000.pl)
+[Link to the original game](https://olekolek1000.com/pb)
 
 ## Getting Started
 These instructions will show you how to install the necessary stuff and compile the project.
