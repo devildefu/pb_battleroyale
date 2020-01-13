@@ -121,6 +121,7 @@ int App::run() {
 void App::handle_events() {
 	sf::Event e;
 	if(window->pollEvent(e)) {
+		if(current_handler) current_handler->before_event(window, e);
 		switch(e.type) {
 		case sf::Event::Closed:
 			SPDLOG_INFO("Received window close event");
@@ -156,6 +157,26 @@ void App::handle_events() {
 			window_view.setViewport(sf::FloatRect(pos_x, pos_y, size_x, size_y));
 			window->setView(window_view);
 		} break;
+
+		case sf::Event::MouseButtonPressed:
+			if(current_handler)
+				current_handler->event_mouse_button_pressed(window, e.mouseButton);
+			break;
+
+		case sf::Event::MouseWheelScrolled:
+			if(current_handler)
+				current_handler->event_mouse_wheel_scrolled(window, e.mouseWheelScroll);
+			break;
+
+		case sf::Event::MouseButtonReleased:
+			if(current_handler)
+				current_handler->event_mouse_button_released(window, e.mouseButton);
+			break;
+
+		case sf::Event::MouseMoved:
+			if(current_handler)
+				current_handler->event_mouse_move(window, e.mouseMove);
+			break;
 
 		default:
 			break;

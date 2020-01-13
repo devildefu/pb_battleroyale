@@ -19,10 +19,10 @@ public:
 	/**
      *  Create obstacle from other obstacle
      */
-	Obstacle(Obstacle& obstacle) {
-		this->state = obstacle.get_state();
-		this->id = obstacle.get_id();
-		this->rect = obstacle.get_rect();
+	Obstacle(Obstacle& current_obstacle) {
+		this->state = current_obstacle.get_state();
+		this->id = current_obstacle.get_id();
+		this->rect = current_obstacle.get_rect();
 	}
 
 	Obstacle(uint16_t id, sf::IntRect rect, int state) {

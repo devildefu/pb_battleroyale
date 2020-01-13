@@ -22,10 +22,17 @@ public:
 	/**
 	 * Called when current handler is changed
 	 */
-	virtual void init() {};
+	virtual void init(sf::RenderWindow* window) {};
 
 	/**
 	 * Called when window is closed
 	 */
 	virtual void event_quit(sf::RenderWindow* window) { window->close(); }
+
+	virtual void event_mouse_wheel_scrolled(sf::RenderWindow* window, sf::Event::MouseWheelScrollEvent data) {};
+	virtual void event_mouse_button_pressed(sf::RenderWindow* window, sf::Event::MouseButtonEvent data) {};
+	virtual void event_mouse_button_released(sf::RenderWindow* window, sf::Event::MouseButtonEvent data) {};
+	virtual void event_mouse_move(sf::RenderWindow* window, sf::Event::MouseMoveEvent data) {};
+
+	virtual void before_event(sf::RenderWindow* window, sf::Event& event) {};
 };

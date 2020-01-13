@@ -3,7 +3,7 @@
 Location* location;
 sf::Texture texture;
 
-void MainHandler::init() {
+void MainHandler::init(sf::RenderWindow* window) {
 	if(map.init()) {
 		exit(1);
 	}
@@ -13,7 +13,7 @@ void MainHandler::init() {
 		SPDLOG_INFO("Map file not found, creating...");
 
 		uint16_t map[LOCATION_BLOCKS_NUMBER];
-		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 1);
+		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 0);
 		location->save(first_loc.c_str(), map);
 	}
 }

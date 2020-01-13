@@ -19,7 +19,7 @@ public:
 	}
 
 	void clear();
-	bool add(Obstacle obstacle);
+	bool add(Obstacle current_obstacle);
 	Obstacle* get(int id);
 private:
 	ObstacleManager();

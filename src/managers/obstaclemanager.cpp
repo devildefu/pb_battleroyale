@@ -15,13 +15,13 @@ void impl::ObstacleManager::clear() {
 	}
 }
 
-bool impl::ObstacleManager::add(Obstacle obstacle) {
-	int id = obstacle.get_id();
+bool impl::ObstacleManager::add(Obstacle current_obstacle) {
+	int id = current_obstacle.get_id();
 
 	//SPDLOG_INFO("Adding obstacle, id: {}", id);
 
 	if(obstacles.find(id) == obstacles.end()) {
-		obstacles.emplace(id, new Obstacle(obstacle));
+		obstacles.emplace(id, new Obstacle(current_obstacle));
 		return true;
 	}
 	return false;

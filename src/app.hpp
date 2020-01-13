@@ -38,7 +38,7 @@ public:
 		if(handler) {
 			if(current_handler) current_handler->clear();
 			current_handler = handler;
-			current_handler->init();
+			current_handler->init(window);
 			if(current_handler == NULL) {
 				SPDLOG_INFO("aaa");
 			}
