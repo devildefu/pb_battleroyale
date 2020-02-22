@@ -11,8 +11,6 @@
 
 static char OBSTACLE_PATH[] = "assets/obstacles/";
 
-using Texture = std::tuple<sf::Texture*, std::string>;
-
 enum class TextureType {
 	Normal,
 	Obstacle

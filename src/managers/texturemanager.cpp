@@ -10,7 +10,7 @@ impl::TextureManager::TextureManager() {
 	int i = 0;
 	sf::Vector2i size;
 
-	std::vector<Texture> textures;
+	std::vector<sf::Texture*> textures;
 
 	for(const auto& entry : std::filesystem::directory_iterator(OBSTACLE_PATH)) {
 		std::string path = entry.path().string();
@@ -22,13 +22,13 @@ impl::TextureManager::TextureManager() {
 		if(size.y < tex->getSize().y) {
 			size.y = tex->getSize().y;
 		}
-		textures.push_back({ tex, path });
+		textures.push_back(tex);
 	}
 
 	obstacles.create(size.x, size.y);
 
-	for(auto [texture, path] : textures) {
-		load_from_memory(texture, path, TextureType::Obstacle);
+	for(auto texture : textures) {
+		load_from_memory(texture, "", TextureType::Obstacle);
 	}
 }
 
