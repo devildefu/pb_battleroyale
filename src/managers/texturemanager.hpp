@@ -23,9 +23,10 @@ public:
 
 	sf::Texture& get(std::string texture);
 	sf::Texture& get_obstacles() { return obstacles; }
+	sf::IntRect& get_obstacle_rect(uint16_t id);
 
 	bool load(std::string texture);
-	sf::IntRect load_obstacle(std::string texture);
+	void load_obstacle(std::string texture);
 
 	/** 
 	 * Returns true if can delete or returns false if can't delete or texture isn't loaded 
@@ -40,6 +41,7 @@ private:
 
 	TexturePacker* obstacle_packer = nullptr;
 	sf::Texture obstacles;
+	std::vector<sf::IntRect> obstacle_rects;
 
 	std::map<std::string, sf::Texture*> textures;
 };

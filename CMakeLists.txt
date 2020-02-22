@@ -26,7 +26,6 @@ add_executable(pb_battleroyale
 	${source}/texturepacker.cpp
 	${source}/managers/musicmanager.cpp
 	${source}/map/mapmanager.cpp
-	${source}/managers/obstaclemanager.cpp
 )
 
 add_definitions(-DSPDLOG_COMPILED_LIB)

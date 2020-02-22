@@ -13,8 +13,9 @@ void MainHandler::init(sf::RenderWindow* window) {
 		SPDLOG_INFO("Map file not found, creating...");
 
 		uint16_t map[LOCATION_BLOCKS_NUMBER];
-		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 0);
+		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 1);
 		location->save(first_loc.c_str(), map);
+		location->load(first_loc.c_str());
 	}
 }
 

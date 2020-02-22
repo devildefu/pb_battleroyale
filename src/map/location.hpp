@@ -5,15 +5,27 @@
 #include <iterator>
 #include <vector>
 
-#include "obstacle.hpp"
+#include <SFML/Graphics.hpp>
 #include <spdlog/spdlog.h>
 
-#include <managers/obstaclemanager.hpp>
+#include <managers/texturemanager.hpp>
 
 constexpr uint8_t LOCATION_WIDTH = 32;
 constexpr uint8_t LOCATION_HEIGHT = 18;
 constexpr uint32_t LOCATION_BLOCKS_NUMBER = LOCATION_WIDTH * LOCATION_HEIGHT;
 constexpr int OBSTACLE_SCALE = 10;
+
+enum class ObstacleFlag {
+	None,
+	IsSolid,
+	HasShadow,
+};
+
+struct Obstacle {
+	uint16_t id;
+	ObstacleFlag flags;
+	sf::IntRect rects;
+};
 
 class Location : public sf::Drawable, public sf::Transformable {
 public:
@@ -23,9 +35,7 @@ public:
 	Location(sf::Texture& background, sf::Texture& tileset, const char* fname);
 
 	Obstacle* get_obstacle(int x, int y);
-	uint16_t get_obstacle_id(int x, int y);
-	void set_obstacle(int x, int y, Obstacle* current_obstacle);
-	void set_obstacle(int x, int y, uint16_t id);
+	void set_obstacle(int x, int y, Obstacle obstacle);
 	void create_from_array(uint16_t map[], int size = LOCATION_BLOCKS_NUMBER);
 	void save(const char* fname, uint16_t* map, int size = LOCATION_BLOCKS_NUMBER);
 	void load(const char* fname);
@@ -45,7 +55,7 @@ private:
 
 	sf::Texture tileset;
 	sf::VertexArray vertices;
-	uint16_t id[LOCATION_BLOCKS_NUMBER];
+	Obstacle obstacles[LOCATION_BLOCKS_NUMBER];
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(background);
@@ -60,6 +70,8 @@ private:
 		vertices.resize(LOCATION_WIDTH * LOCATION_HEIGHT * 4);
 
 		background.setTexture(bg);
-		std::fill(id, id+LOCATION_BLOCKS_NUMBER, 0);
+		for(int i = 0; i < LOCATION_BLOCKS_NUMBER; i++) {
+			obstacles[i] = { 0, ObstacleFlag::None, sf::IntRect(0, 0, 0, 0) };
+		}
 	}
 };

@@ -5,10 +5,13 @@ impl::TextureManager::TextureManager() {
 	SPDLOG_INFO("Initialized TextureManager");
 	obstacle_packer = new TexturePacker(obstacles);
 
-	// TODO: Rewrite this. We load TWO TIME textures (once in app.cpp, once here), which slows down the time of loading.
+	obstacle_rects.push_back(sf::IntRect(0, 0, 0, 0));
+
 	int i = 0;
 	int size_x = 0;
 	int size_y = 0;
+
+	std::vector<sf::Texture> textures;
 
 	for(const auto& entry : std::filesystem::directory_iterator(OBSTACLE_PATH)) {
 		i++;
@@ -19,11 +22,15 @@ impl::TextureManager::TextureManager() {
 		if(size_y < tex.getSize().y) {
 			size_y = tex.getSize().y;
 		}
+		textures.push_back(tex);
 	}
 
-	// TODO: Resizing when needed
 	SPDLOG_INFO("{} {}", size_x, size_y);
 	obstacles.create(size_x, size_y);
+
+	for(int i = 1; i <= textures.size(); i++) {
+		load_obstacle(OBSTACLE_PATH + std::to_string(i));
+	}
 }
 
 impl::TextureManager::~TextureManager() {
@@ -52,6 +59,10 @@ sf::Texture& impl::TextureManager::get(std::string texture) {
 	}
 }
 
+sf::IntRect& impl::TextureManager::get_obstacle_rect(uint16_t id) {
+	return obstacle_rects[id];
+}
+
 bool impl::TextureManager::load(std::string texture) {
 	//SPDLOG_INFO("Loading texture \"{}\"", texture);
 	if(this->textures.find(texture) == this->textures.end()) {
@@ -70,7 +81,7 @@ bool impl::TextureManager::load(std::string texture) {
 	}
 }
 
-sf::IntRect impl::TextureManager::load_obstacle(std::string texture) {
+void impl::TextureManager::load_obstacle(std::string texture) {
 	//SPDLOG_INFO("Loading obstacle \"{}\"", texture);
 
 	sf::Texture txt;
@@ -79,7 +90,8 @@ sf::IntRect impl::TextureManager::load_obstacle(std::string texture) {
 		txt.loadFromMemory(invalidtexture, size_invalidtexture);
 	}
 
-	return obstacle_packer->pack(txt);;
+	sf::IntRect& rect = obstacle_packer->pack(txt);
+	obstacle_rects.push_back(rect);
 }
 
 bool impl::TextureManager::remove(std::string texture) {

@@ -79,13 +79,6 @@ App::App()
 		exit(1);
 	}
 
-	int i = 0;
-	for(const auto& entry : std::filesystem::directory_iterator(OBSTACLE_PATH)) {
-		i++;
-		sf::IntRect rect = TextureManager().load_obstacle(OBSTACLE_PATH + std::to_string(i));
-		ObstacleManager().add(Obstacle(i, rect, ObstacleFlag::IsSolid | ObstacleFlag::HasShadow));
-	}
-
 	if(config.music) {
 		MusicManager().load("despacito", "despacito.wav");
 		MusicManager().play("despacito");
