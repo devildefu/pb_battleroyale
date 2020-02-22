@@ -1,13 +1,17 @@
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
 #include <map>
-#include <spdlog/spdlog.h>
 #include <filesystem>
+#include <tuple>
+
+#include <SFML/Graphics/Texture.hpp>
+#include <spdlog/spdlog.h>
 
 #include <texturepacker.hpp>
 
 static char OBSTACLE_PATH[] = "assets/obstacles/";
+
+using Texture = std::tuple<sf::Texture*, std::string>;
 
 enum class TextureType {
 	Normal,
@@ -26,11 +30,12 @@ public:
 		return singleton;
 	}
 
-	sf::Texture& get(std::string texture);
+	sf::Texture& get(std::string name);
 	sf::Texture& get_obstacles() { return obstacles; }
-	sf::IntRect& get_obstacle_rect(uint16_t id);
+	sf::IntRect& get_obstacle_rect(uint16_t id) { return obstacle_rects[id]; }
 
-	bool load(std::string texture, TextureType type);
+	bool load(std::string name, TextureType type);
+	void load_from_memory(sf::Texture* texture, std::string name, TextureType type);
 
 	/** 
 	 * Returns true if can delete or returns false if can't delete or texture isn't loaded 
