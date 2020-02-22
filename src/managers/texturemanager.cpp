@@ -29,7 +29,7 @@ impl::TextureManager::TextureManager() {
 	obstacles.create(size_x, size_y);
 
 	for(int i = 1; i <= textures.size(); i++) {
-		load_obstacle(OBSTACLE_PATH + std::to_string(i));
+		load(OBSTACLE_PATH + std::to_string(i), TextureType::Obstacle);
 	}
 }
 
@@ -63,8 +63,7 @@ sf::IntRect& impl::TextureManager::get_obstacle_rect(uint16_t id) {
 	return obstacle_rects[id];
 }
 
-bool impl::TextureManager::load(std::string texture) {
-	//SPDLOG_INFO("Loading texture \"{}\"", texture);
+bool impl::TextureManager::load(std::string texture, TextureType type) {
 	if(this->textures.find(texture) == this->textures.end()) {
 		sf::Texture* txt = new sf::Texture();
 
@@ -74,24 +73,20 @@ bool impl::TextureManager::load(std::string texture) {
 			return false;
 		}
 
-		this->textures[texture] = txt;
+		switch(type) {
+			case TextureType::Normal: 
+				this->textures[texture] = txt;
+				break;
+
+			case TextureType::Obstacle:
+				sf::IntRect& rect = obstacle_packer->pack(*txt);
+				obstacle_rects.push_back(rect);
+				break;
+		}
 		return true;
 	} else {
 		return true;
 	}
-}
-
-void impl::TextureManager::load_obstacle(std::string texture) {
-	//SPDLOG_INFO("Loading obstacle \"{}\"", texture);
-
-	sf::Texture txt;
-	if(!txt.loadFromFile(texture + ".png")) {
-		SPDLOG_ERROR("Cannot load {} texture file", texture + ".png");
-		txt.loadFromMemory(invalidtexture, size_invalidtexture);
-	}
-
-	sf::IntRect& rect = obstacle_packer->pack(txt);
-	obstacle_rects.push_back(rect);
 }
 
 bool impl::TextureManager::remove(std::string texture) {

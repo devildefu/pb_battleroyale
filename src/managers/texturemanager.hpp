@@ -9,6 +9,11 @@
 
 static char OBSTACLE_PATH[] = "assets/obstacles/";
 
+enum class TextureType {
+	Normal,
+	Obstacle
+};
+
 namespace impl {
 class TextureManager {
 public:
@@ -25,8 +30,7 @@ public:
 	sf::Texture& get_obstacles() { return obstacles; }
 	sf::IntRect& get_obstacle_rect(uint16_t id);
 
-	bool load(std::string texture);
-	void load_obstacle(std::string texture);
+	bool load(std::string texture, TextureType type);
 
 	/** 
 	 * Returns true if can delete or returns false if can't delete or texture isn't loaded 
