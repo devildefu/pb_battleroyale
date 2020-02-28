@@ -23,6 +23,7 @@ public:
 	App();
 	~App();
 
+	void init();
 	int run();
 
 	void add_handler(const std::string& name, EventHandler* handler) {

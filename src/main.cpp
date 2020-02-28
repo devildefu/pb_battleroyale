@@ -11,6 +11,7 @@ int main(int argc, char* argv[]) {
 	spdlog::set_level(spdlog::level::off);
 #endif
 	App app;
+	app.init();
 	app.add_handler("main", new MainHandler);
 	app.set_current_eventhandler("main");
 	return app.run();

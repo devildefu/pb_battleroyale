@@ -23,7 +23,23 @@ static int handler(void* user, const char* section, const char* name, const char
 
 App::App()
 	: window(new sf::RenderWindow(sf::VideoMode(1280, 720), "Perypetie Boba Battle Royale")) {
+}
+
+App::~App() {
+	SPDLOG_INFO("Cleaning");
+
+	for(auto handler : handlers) {
+		delete handler.second;
+	}
+	handlers.clear();
+
+	if(window)
+		delete window;
+}
+
+void App::init() {
 	window->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(320, 180))));
+
 	SPDLOG_INFO("Initializing game");
 
 	SPDLOG_INFO("Parsing config file");
@@ -75,7 +91,7 @@ App::App()
 	SPDLOG_INFO("Parsing completed");
 
 	if(!helpers::file_exists(OBSTACLE_PATH)) {
-		SPDLOG_ERROR("\"{}\" not found!", OBSTACLE_PATH);
+		SPDLOG_ERROR("{} not found!", OBSTACLE_PATH);
 		exit(1);
 	}
 
@@ -86,18 +102,6 @@ App::App()
 	} else {
 		SPDLOG_INFO("Music disabled");
 	}
-}
-
-App::~App() {
-	SPDLOG_INFO("Cleaning");
-
-	for(auto handler : handlers) {
-		delete handler.second;
-	}
-	handlers.clear();
-
-	if(window)
-		delete window;
 }
 
 int App::run() {
