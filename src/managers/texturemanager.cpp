@@ -27,8 +27,8 @@ impl::TextureManager::TextureManager() {
 
 	obstacles.create(size.x, size.y);
 
-	for(auto texture : textures) {
-		load_from_memory(texture, "", TextureType::Obstacle);
+	for(int i = 1; i <= textures.size(); i++) {
+		load(OBSTACLE_PATH + std::to_string(i), TextureType::Obstacle);
 	}
 }
 
