@@ -74,7 +74,7 @@ App::App()
 
 	SPDLOG_INFO("Parsing completed");
 
-	if(!Helpers::file_exists(OBSTACLE_PATH)) {
+	if(!helpers::file_exists(OBSTACLE_PATH)) {
 		SPDLOG_ERROR("\"{}\" not found!", OBSTACLE_PATH);
 		exit(1);
 	}

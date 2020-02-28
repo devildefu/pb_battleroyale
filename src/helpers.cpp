@@ -1,6 +1,6 @@
 #include <helpers.hpp>
 
-bool Helpers::file_exists(const std::string& fname) {
+bool helpers::file_exists(const std::string& fname) {
 	#ifdef _MSC_VER
 		DWORD attr = GetFileAttributesA(fname.c_str());
 		return (attr != INVALID_FILE_ATTRIBUTES);
@@ -10,6 +10,6 @@ bool Helpers::file_exists(const std::string& fname) {
 	#endif
 }
 
-std::string Helpers::location_path(int x, int y) {
+std::string helpers::location_path(int x, int y) {
 	return fmt::format("{}/{},{}.{}", LOCATION_PATH, x, y, LOCATION_EXT);
 }

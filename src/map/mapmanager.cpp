@@ -1,7 +1,7 @@
 #include <map/mapmanager.hpp>
 
 bool MapManager::init() {
-	if(!Helpers::file_exists(LOCATION_PATH)) {
+	if(!helpers::file_exists(LOCATION_PATH)) {
 		SPDLOG_ERROR("\"{}\" not found!", LOCATION_PATH);
 		return true;
 	}

@@ -13,7 +13,7 @@
 
 #include <map/mapmanager.hpp>
 
-namespace Helpers {
+namespace helpers {
 	bool file_exists(const std::string& fname);
 	std::string location_path(int x, int y);
 }
