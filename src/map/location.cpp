@@ -30,8 +30,8 @@ Location::Location(sf::Texture& background, sf::Texture& tileset, const char* fn
 	load(fname);
 }
 
-Obstacle* Location::get_obstacle(int x, int y) {
-	return &this->obstacles[y * LOCATION_WIDTH + x];
+Obstacle& Location::get_obstacle(int x, int y) {
+	return this->obstacles[y * LOCATION_WIDTH + x];
 }
 
 void Location::create_from_array(uint16_t map[], int size) {

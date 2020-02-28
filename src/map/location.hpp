@@ -34,7 +34,7 @@ public:
 	Location(sf::Texture& background, sf::Texture& tileset, uint16_t map[], int size = LOCATION_BLOCKS_NUMBER);
 	Location(sf::Texture& background, sf::Texture& tileset, const char* fname);
 
-	Obstacle* get_obstacle(int x, int y);
+	Obstacle& get_obstacle(int x, int y);
 	void set_obstacle(int x, int y, Obstacle obstacle);
 	void create_from_array(uint16_t map[], int size = LOCATION_BLOCKS_NUMBER);
 	void save(const char* fname, uint16_t* map, int size = LOCATION_BLOCKS_NUMBER);
