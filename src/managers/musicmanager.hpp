@@ -16,8 +16,8 @@ public:
 		return singleton;
 	}
 
-	void load(const std::string& name, const std::string& filename);
-	void play(const std::string& name);
+	bool load(const std::string& name, const std::string& filename);
+	bool play(const std::string& name);
 	bool exists(const std::string& name);
 	void clear();
 
@@ -31,6 +31,7 @@ private:
 
 	std::map<std::string, sf::Music*> musics;
 	sf::Music* current_music = nullptr;
+	float volume;
 };
 };
 

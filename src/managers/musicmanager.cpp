@@ -7,28 +7,34 @@ impl::MusicManager::~MusicManager() {
 	current_music = nullptr;
 }
 
-void impl::MusicManager::load(const std::string& name, const std::string& filename) {
-	SPDLOG_INFO("Loading new music, name: {}", name);
-
-	/* Is music loaded? */
-	if(this->musics.find(name) == this->musics.end()) {
-		sf::Music* music = new sf::Music();
+bool impl::MusicManager::load(const std::string& name, const std::string& filename) {
+	bool status = true;
+	if(!exists(name)) {
+		sf::Music* music = new sf::Music;
 
 		/* Try to open a file */
 		if(!music->openFromFile(filename)) {
 			SPDLOG_ERROR("Cannot load {} music file", filename);
+			status = false;
 		}
 
 		this->musics[name] = music;
 	} else {
 		SPDLOG_ERROR("Music is actually loaded!");
+		status = false;
 	}
+
+	return status;
 }
 
-void impl::MusicManager::play(const std::string& name) {
+bool impl::MusicManager::play(const std::string& name) {
 	sf::Music* music = this->musics[name];
+	if(!music) return false;
+	
 	music->play();
+	music->setVolume(volume);
 	current_music = music;
+	return true;
 }
 
 bool impl::MusicManager::exists(const std::string& name) {
@@ -42,17 +48,23 @@ void impl::MusicManager::clear() {
 }
 
 void impl::MusicManager::stop() {
-	if(current_music) current_music->stop();
+	if(!current_music) return;
+	current_music->stop();
 }
 
 void impl::MusicManager::pause() {
-	if(current_music) current_music->pause();
+	if(!current_music) return;
+	current_music->pause();
 }
 
 void impl::MusicManager::resume() {
-	if(current_music) current_music->play();
+	if(!current_music) return;
+	current_music->play();
 }
 
 void impl::MusicManager::set_volume(float volume) {
-	if(current_music) current_music->setVolume(volume);
+	if(!current_music) return;
+
+	this->volume = volume;
+	current_music->setVolume(volume);
 }
