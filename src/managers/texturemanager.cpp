@@ -75,7 +75,7 @@ void impl::TextureManager::load_from_memory(sf::Texture* texture, std::string na
 		break;
 
 	case TextureType::Obstacle:
-		sf::IntRect& rect = obstacle_packer->pack(*texture);
+		sf::IntRect rect = obstacle_packer->pack(*texture);
 		obstacle_rects.push_back(rect);
 		break;
 	}
