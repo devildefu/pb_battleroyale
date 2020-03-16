@@ -72,25 +72,15 @@ void Location::set_obstacle(int x, int y, Obstacle current_obstacle) {
 	if(id > 0) {
 		// Calculation of the position
 		quad[0].position = sf::Vector2f(x * OBSTACLE_SCALE, y * OBSTACLE_SCALE);
-		quad[1].position = sf::Vector2f((x + 1) * OBSTACLE_SCALE, y * OBSTACLE_SCALE);
-		quad[2].position = sf::Vector2f((x + 1) * OBSTACLE_SCALE, (y + 1) * OBSTACLE_SCALE);
-		quad[3].position = sf::Vector2f(x * OBSTACLE_SCALE, (y + 1) * OBSTACLE_SCALE);
+		quad[1].position = sf::Vector2f(x * OBSTACLE_SCALE + rect.width, y * OBSTACLE_SCALE);
+		quad[2].position = sf::Vector2f(x * OBSTACLE_SCALE + rect.width, y * OBSTACLE_SCALE + rect.height);
+		quad[3].position = sf::Vector2f(x * OBSTACLE_SCALE, y * OBSTACLE_SCALE + rect.height);
 
 		// Calculation of the texture position
 		quad[0].texCoords = sf::Vector2f(rect.left, rect.top);
 		quad[1].texCoords = sf::Vector2f(rect.left + rect.width, rect.top);
 		quad[2].texCoords = sf::Vector2f(rect.left + rect.width, rect.top + rect.height);
 		quad[3].texCoords = sf::Vector2f(rect.left, rect.top + rect.height);
-	} else {
-		quad[0].position = sf::Vector2f(-1, -1);
-		quad[1].position = sf::Vector2f(-1, -1);
-		quad[2].position = sf::Vector2f(-1, -1);
-		quad[3].position = sf::Vector2f(-1, -1);
-
-		quad[0].texCoords = sf::Vector2f(-1, -1);
-		quad[1].texCoords = sf::Vector2f(-1, -1);
-		quad[2].texCoords = sf::Vector2f(-1, -1);
-		quad[3].texCoords = sf::Vector2f(-1, -1);
 	}
 
 	this->obstacles[y * LOCATION_WIDTH + x] = { 

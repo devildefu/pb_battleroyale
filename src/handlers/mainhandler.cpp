@@ -9,8 +9,7 @@ void MainHandler::init(sf::RenderWindow* window) {
 		SPDLOG_INFO("Map file not found, creating...");
 
 		uint16_t map[LOCATION_BLOCKS_NUMBER];
-		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 5);
-		//map[0] = 58;
+		std::fill(map, map + LOCATION_BLOCKS_NUMBER, 1);
 		location->save(first_loc.c_str(), map);
 	}
 
