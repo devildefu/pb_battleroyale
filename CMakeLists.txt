@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
-find_package(SFML COMPONENTS graphics window system audio)
+find_package(SFML CONFIG REQUIRED COMPONENTS graphics window system audio)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
@@ -26,6 +26,7 @@ add_executable(pb_battleroyale
 	${source}/texturepacker.cpp
 	${source}/managers/musicmanager.cpp
 	${source}/map/mapmanager.cpp
+	${source}/player.cpp
 )
 
 add_definitions(-DSPDLOG_COMPILED_LIB)
